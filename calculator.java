@@ -1,18 +1,13 @@
 package PersonalRepository;
 import java.util.Scanner;
 
-class Calculator {
-	double sum;
-	double minus;
-	double multiply;
-	double division;
-	double worng = 0;
+class CalculatorTest {
+	double result;
 	
 	String operator;
-	double first;
-	double sceond;
+	double first, sceond;
 	
-	Calculator(String operator, double first, double sceond) {
+	CalculatorTest(String operator, double first, double sceond) {
 		this.operator = operator;
 		this.first = first;
 		this.sceond = sceond;
@@ -21,31 +16,34 @@ class Calculator {
 	double run() {
 		
 		if (operator.equals("+")==true) {
-			
-			sum = first+sceond;
-			return sum; 
+			result = first+sceond;
+			return result; 
 		}
 		
 		else if (operator.equals("-")==true) {
-			minus = first-sceond;
-			return minus;
+			result = first-sceond;
+			return result;
 		}
 		
 		else if (operator.equals("*")==true) {
-			multiply = first*sceond;
-			return multiply;
+			result = first*sceond;
+			return result;
 		}
 		
 		else if (operator.equals("/")==true) {
-			division = first/sceond;
-			return division;
+			result = first/sceond;
+			return result;
 			
 		}
 		
-		else System.out.println("worng type!");
-			return worng;
+		else System.out.println("worng type!"); {
+			result =0;
+			return result;
+		}
 	}
-	
+}
+
+	public class calculator{
 	public static void main(String[] args) {
 		
 	Scanner sn = new Scanner(System.in);
@@ -61,7 +59,7 @@ class Calculator {
 	System.out.println("Enter scoend number");
 	sceond = sn.nextDouble();
 	
-	Calculator inn = new Calculator(operator, first, sceond);
+	CalculatorTest inn = new CalculatorTest(operator, first, sceond);
 	System.out.println(first+""+operator+""+sceond+" = " +inn.run());
 	
 	
