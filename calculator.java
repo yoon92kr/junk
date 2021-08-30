@@ -1,13 +1,13 @@
 package PersonalRepository;
 import java.util.Scanner;
 
-class CalculatorTest {
+class RunCalculator {
 	double result;
 	
 	String operator;
 	double first, sceond;
 	
-	CalculatorTest(String operator, double first, double sceond) {
+	RunCalculator(double first, String operator, double sceond) {
 		this.operator = operator;
 		this.first = first;
 		this.sceond = sceond;
@@ -43,7 +43,7 @@ class CalculatorTest {
 	}
 }
 
-	public class calculator{
+	public class Calculator{
 	public static void main(String[] args) {
 		
 	Scanner sn = new Scanner(System.in);
@@ -59,7 +59,7 @@ class CalculatorTest {
 	System.out.println("Enter scoend number");
 	sceond = sn.nextDouble();
 	
-	CalculatorTest inn = new CalculatorTest(operator, first, sceond);
+	RunCalculator inn = new RunCalculator(operator, first, sceond);
 	System.out.println(first+""+operator+""+sceond+" = " +inn.run());
 	
 	
