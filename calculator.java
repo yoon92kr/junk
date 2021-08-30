@@ -50,18 +50,18 @@ class RunCalculator {
 	String operator;
 	double first, sceond;
 	
-	System.out.println("Enter Operator (+,-,*,/)");
-	operator = sn.next();
-	
-	System.out.println("Enter first number");
+	System.out.print("Enter First Number  ");
 	first = sn.nextDouble();
 	
-	System.out.println("Enter scoend number");
+	System.out.print("Enter Operator (+,-,*,/)  ");
+	operator = sn.next();
+		
+	System.out.print("Enter scoend number  ");
 	sceond = sn.nextDouble();
 	
-	RunCalculator inn = new RunCalculator(operator, first, sceond);
-	System.out.println(first+""+operator+""+sceond+" = " +inn.run());
-	
+	RunCalculator inn = new RunCalculator(first, operator, sceond);
+	System.out.println("["+first+"] "+operator+" ["+sceond+"]  =  [" +inn.run()+"]");
+	 
 	
 	sn.close();
 	
