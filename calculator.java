@@ -36,10 +36,11 @@ class RunCalculator {
 			
 		}
 		
-		else System.out.println("worng type!"); {
-			result =0;
-			return result;
-		}
+		else System.out.println("");
+			 System.out.println("worng type!");
+			 result =0;
+			 return result;
+		
 	}
 }
 
@@ -60,11 +61,13 @@ class RunCalculator {
 	sceond = sn.nextDouble();
 	
 	RunCalculator inn = new RunCalculator(first, operator, sceond);
+	if(inn.run() != 0) 
 	System.out.println("["+first+"] "+operator+" ["+sceond+"]  =  [" +inn.run()+"]");
 	 
 	
 	sn.close();
 	
 
+	
 	}
 }
