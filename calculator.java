@@ -1,4 +1,5 @@
 package PersonalRepository;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class RunCalculator {
@@ -48,15 +49,27 @@ class RunCalculator {
 	public static void main(String[] args) {
 		
 	Scanner sn = new Scanner(System.in);
-	String operator;
-	double first, sceond;
+	String operator = null;
+	double first = 0, sceond = 0;
 	
 	System.out.print("Enter First Number  ");
+
+	try {
 	first = sn.nextDouble();
+	}
+	catch(InputMismatchException e) {
+		System.out.println("Please enter only number. program exit...");
 	
-	System.out.print("Enter Operator (+,-,*,/)  ");
-	operator = sn.next();
+	}
+	 
 		
+	System.out.print("Enter Operator (+,-,*,/)  ");
+	try {
+	operator = sn.next();
+	}
+	catch(Exception e) {
+		System.out.println("Please enter only operator. program exit...");
+	}
 	System.out.print("Enter scoend number  ");
 	sceond = sn.nextDouble();
 	
