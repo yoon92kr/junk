@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\book\yoon\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+606499170.index
+2362864581.index
+638750187.index
+1061616451.index
+2256002005.index

@@ -21,7 +21,7 @@
 
 	<select id="selectAllArticlesList" resultMap="articlesResult">
 		<![CDATA[
-      SELECT if(parentNO > 0, 'Re : ', dense_rank() over(order by lpad(matchNO, '4', '0') asc)) as viewNO,
+      SELECT if(parentNO > 0, "RE : ", dense_rank() over(order by lpad(matchNO, '4', '0') asc)) as 'viewNO',
 	  title, id, writeDate, articleNO , parentNO
       from t_board
       ORDER BY lpad(matchNO, '4', '0') asc, parentNO asc		
