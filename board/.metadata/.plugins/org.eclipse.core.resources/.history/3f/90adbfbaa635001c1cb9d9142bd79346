@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+	<resultMap id="articlesResult" type="articleVO">
+		<result property="hiddenNO" column="hiddenNO" />
+		<result property="articleNO" column="articleNO" />
+		<result property="parentNO" column="parentNO" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writeDate" column="writeDate" />
+		<result property="imageFileName" column="imageFileName" />
+		<result property="viewNO" column="viewNO" />
+	</resultMap>
+
+	<resultMap id="imgResult" type="imageVO">
+		<result property="imageFileNO" column="imageFileNO" />
+		<result property="articleNO" column="articleNO" />
+		<result property="imageFileName" column="imageFileName" />
+	</resultMap>
+
+	<select id="selectAllArticlesList" resultMap="articlesResult">
+		<![CDATA[
+      SELECT if(parentNO > 0, ">", dense_rank() over(order by lpad(matchNO, '4', '0') asc)) as 'viewNO',
+	  title, id, writeDate, articleNO , parentNO
+      from t_board
+      ORDER BY lpad(matchNO, '4', '0') asc, parentNO asc		
+    ]]>
+	</select>
+
+	<!--게시글 추가  -->
+
+	<insert id="insertNewArticle" parameterType="java.util.Map">
+		<![CDATA[
+			INSERT into t_board (articleNO, hiddenNO, parentNO, matchNO, title, content, imageFileName, writeDate, id)
+			VALUES(
+			#{articleNO},
+			(select count(*) from t_board t where t.parentNO='0')+1 , 
+			#{parentNO},
+			#{articleNO}, 
+			#{title}, 
+			#{content}, 
+			#{imageFileName}, 
+			default, 
+			#{id}	
+			)
+			
+		]]>
+	</insert>
+	
+	<insert id="insertArticleReply" parameterType="java.util.Map">
+		<![CDATA[
+			INSERT into t_board (articleNO, hiddenNO, parentNO, matchNO, title, content, imageFileName, writeDate, id)
+			VALUES(
+			#{articleNO},
+			(select count(*) from t_board t where t.parentNO='0')+1 , 
+			#{parentNO},
+			#{matchNO}, 
+			#{title}, 
+			#{content}, 
+			#{imageFileName}, 
+			default, 
+			#{id}	
+			)
+			
+		]]>
+	</insert>
+
+	<select id="selectNewArticleNO" resultType="int">
+		<![CDATA[
+			SELECT  ifnull(max(articleNO), 0) + 1 from t_board		
+		]]>
+	</select>
+	
+		<select id="selectNewParentNO" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT  max(parentNO)+1 from t_board where matchNO=#{matchNO}		
+		]]>
+	</select>
+
+	<select id="selectArticle" resultType="articleVO" parameterType="int">
+		<![CDATA[
+      SELECT * from t_board
+      where articleNO = #{articleNO}		
+    ]]>
+	</select>
+
+	<update id="updateArticle" parameterType="java.util.Map">
+		update t_board
+			set title=#{title},	 
+			content=#{content}
+		<if test="imageFileName!='' and imageFileName!=null">
+			  , imageFileName=#{imageFileName}
+			</if>
+		where articleNO=#{articleNO}
+	</update>
+
+	<delete id="deleteArticle" parameterType="int">
+		<![CDATA[
+      delete from t_board
+      where articleNO = #{articleNO}
+or matchNO = #{articleNO}
+    ]]>
+	</delete>
+
+
+	<select id="selectNewImageFileNO" resultType="int">
+		<![CDATA[
+      SELECT  ifnull(max(imageFileNO),0) from t_imageFile		
+    ]]>
+	</select>
+
+
+	<select id="selectImageFileList" resultMap="imgResult" parameterType="int">
+		<![CDATA[
+      SELECT * from t_imageFile
+      where articleNO=#{articleNO}	
+    ]]>
+	</select>
+
+</mapper>

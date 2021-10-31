@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="listArticles" extends="baseLayout">
+	      <put-attribute name="title" value="글 목록 페이지" />
+	      <put-attribute name="body" value="/WEB-INF/views/board/listArticles.jsp" />
+	</definition>
+	
+	<definition name="articleForm" extends="baseLayout">
+		<put-attribute name="title" value="글 생성 페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/board/articleForm.jsp" />
+	</definition>
+	
+	<definition name="viewArticle" extends="baseLayout">
+    <put-attribute name="title" value="글 상세 페이지" />
+    <put-attribute name="body" value="/WEB-INF/views/board/viewArticle.jsp" />
+  </definition>
+
+	<definition name="replyForm" extends="baseLayout">
+    <put-attribute name="title" value="답글 생성 페이지" />
+    <put-attribute name="body" value="/WEB-INF/views/board/replyForm.jsp" />
+  </definition>
+	
+</tiles-definitions>
