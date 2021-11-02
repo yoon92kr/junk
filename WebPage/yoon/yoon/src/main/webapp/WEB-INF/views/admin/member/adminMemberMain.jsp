@@ -5,13 +5,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script>
-function search_member(search_period){	
+/* function search_member(search_period){	
 	temp=calcPeriod(search_period);
 	var date=temp.split(",");
 	beginDate=date[0];
@@ -19,8 +19,6 @@ function search_member(search_period){
 	//alert("beginDate:"+beginDate+",endDate:"+endDate);
 	//return ;
 	
-	var formObj=document.createElement("form");
-    
 	var formObj=document.createElement("form");
 	var i_beginDate = document.createElement("input"); 
 	var i_endDate = document.createElement("input");
@@ -34,7 +32,23 @@ function search_member(search_period){
     formObj.appendChild(i_endDate);
     document.body.appendChild(formObj); 
     formObj.method="get";
-    formObj.action="/bookshop01/admin/member/adminMemberMain.do";
+    formObj.action="/admin/member/adminMemberMain.do";
+    formObj.submit();
+} */
+
+function search_member(search_period){	
+	
+	
+	var formObj=document.createElement("form");
+	var date_value = document.createElement("input"); 
+	
+	date_value.name="fixedSearchPeriod";
+	date_value.value=search_period;
+	
+    formObj.appendChild(date_value);
+    document.body.appendChild(formObj); 
+    formObj.method="get";
+    formObj.action="${contextPath}/admin/member/adminMemberMain.do";
     formObj.submit();
 }
 
@@ -481,11 +495,11 @@ function fn_detail_search(){
              <td colspan=8 class="fixed">
                  <c:forEach   var="page" begin="1" end="10" step="1" >
 		         <c:if test="${chapter >1 && page==1 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter-1}&pageNum=${(chapter-1)*10 +1 }">&nbsp;pre &nbsp;</a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section-1}&pageNum=${(scetion-1)*10 +1 }">&nbsp;pre &nbsp;</a>
 		         </c:if>
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter}&pageNum=${page}">${(chapter-1)*10 +page } </a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
 		         <c:if test="${page ==10 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter+1}&pageNum=${chapter*10+1}">&nbsp; next</a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section+1}&pageNum=${scetion*10+1}">&nbsp; next</a>
 		         </c:if> 
 	      		</c:forEach> 
            </td>
@@ -493,7 +507,7 @@ function fn_detail_search(){
 		</tbody>
 	</table>
   </form>   	
-	<div class="clear"></div>
+	<%-- <div class="clear"></div>
 <c:choose>
  <c:when test="${not empty order_goods_list }">	
    <DIV id="page_wrap">
@@ -508,7 +522,7 @@ function fn_detail_search(){
 	      </c:forEach> 
 	</DIV>	
  </c:when>
-</c:choose>
+</c:choose> --%>
 </body>
 </html>
 

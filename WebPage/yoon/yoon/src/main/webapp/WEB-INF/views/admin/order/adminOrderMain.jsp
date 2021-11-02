@@ -33,7 +33,7 @@ function init(){
 </c:when>
 </c:choose>
 <script>
-function search_order_history(search_period){	
+/* function search_order_history(search_period){	
 	temp=calcPeriod(search_period);
 	var date=temp.split(",");
 	beginDate=date[0];
@@ -56,8 +56,22 @@ function search_order_history(search_period){
     formObj.method="get";
     formObj.action="${contextPath}/admin/order/adminOrderMain.do";
     formObj.submit();
-}
+} */
+function search_order_history(search_period){	
 
+
+    
+	var formObj=document.createElement("form");
+	var search_date = document.createElement("input");
+	search_date.name = "fixedSearchPeriod";
+	search_date.value = search_period;
+
+    formObj.appendChild(search_date);
+    document.body.appendChild(formObj); 
+    formObj.method="get";
+    formObj.action="${contextPath}/admin/order/adminOrderMain.do";
+    formObj.submit();
+}
 
 function  calcPeriod(search_period){
 	var dt = new Date();
