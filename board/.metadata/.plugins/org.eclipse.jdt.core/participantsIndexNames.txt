@@ -1,9 +1,0 @@
-INDEX VERSION 1.131
-C:\junk\board\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\874443669.index
-\yoon\src\main\java
-C:\junk\board\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2371718001.index
-\yoon\src\main\java
-C:\junk\board\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\408224088.index
-\yoon\src\main\java
-C:\junk\board\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\789587899.index
-\yoon\src\main\java
