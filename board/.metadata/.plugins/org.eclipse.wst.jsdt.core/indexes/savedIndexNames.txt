@@ -1,5 +1,6 @@
-INDEX VERSION 1.4+C:\스프링 게시판 구현\yoon92\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-161693735.index
-607032422.index
-1888857785.index
-3139340239.index
+INDEX VERSION 1.4+C:\junk\board\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3043596695.index
+1032577696.index
+3875466595.index
+4145346124.index
+2558517633.index
