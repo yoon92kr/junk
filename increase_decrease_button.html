@@ -1,0 +1,116 @@
+<style>
+
+.value-button {
+	display: inline-block;
+	margin: 0px;
+	width: 10%;
+	height: 25px;
+	text-align: center;
+	background: #fff;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.value-button:hover {
+	cursor: pointer;
+	color: #d9d9d9
+}
+
+form .cart_decrease {
+	margin-right: -6px;
+	margin-left: 5%;
+}
+
+form .cart_increase {
+	margin-left: -6px;
+	margin-right: 5%;
+	right: 0;
+}
+
+input.cart_item_count {
+	text-align: center;
+	border: none;
+	margin: 0px 25% 0px 25%;
+	width: 20%;
+	height: 100%;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+#cart_itemCountBox_form {
+	margin-top: 30px;
+	border: 1px solid #ddd;
+	width: 120px;
+	height: 30px;
+}
+
+
+</style>
+
+<form name="itemCountBox" id="itemCountBox_form_detail">
+    <div class="value-button cart_decrease" id="cart_decrease"	onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
+    <input type="number" class="cart_item_count" id="cart_item_count" value="1"	onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchEvt(this.value, this.id);}" />
+    <div class="value-button cart_increase" id="cart_increase"	onclick="increaseValue(this.id)" value="Increase Value">+</div>
+</form>
+
+<script>
+	/*---------- 수량 증감 input 박스 설정 ----------*/
+
+	/* 수량 증감 */
+	function increaseValue(tagId) {
+		let countValue = parseInt(
+				document.getElementById('cart_item_count').value, 10);
+
+		countValue = isNaN(countValue) ? 0 : countValue;
+		countValue++;
+		document.getElementById('cart_item_count').value = countValue;
+	};
+
+	function decreaseValue(tagId) {
+
+		let countValue = parseInt(
+				document.getElementById('cart_item_count').value, 10);
+		if (countValue <= 1) {
+			alert("수량은 1보다 작을 수 없습니다.")
+		}
+		;
+		countValue = isNaN(countValue) ? 0 : countValue;
+		countValue < 2 ? countValue = 2 : '';
+		countValue--;
+		document.getElementById('cart_item_count').value = countValue;
+	};
+	/* 수량입력 후 엔터 입력시 이벤트 */
+
+	function searchEvt(targetValue, targetId) {
+
+		if (targetValue == "" || targetValue < 1) {
+			alert('수량은 1보다 작을 수 없습니다.');
+			document.getElementById(targetId).value = 1;
+		}
+
+	}
+
+	/* 수량입력 후 다른 영역 클릭 시 이벤트 */
+	window.onload = eventPlus();
+
+	function eventPlus() {
+
+		document.itemCountBox.cart_item_count.onblur = eventGo;
+
+	}
+	function eventGo() {
+		if (this.value == "" || this.value < 1) {
+			alert('수량은 1보다 작을 수 없습니다.');
+			document.getElementById(this.id).value = 1;
+		}
+
+	}
+</script>
