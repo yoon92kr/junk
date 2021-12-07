@@ -8,8 +8,12 @@
 
 <div class="container">
 <div class="MyPage_title">
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">관리자 페이지</h1></div>
+    </div>
+		
     	<div class="row">
-    		<div class="col-lg-2 text-center MyPage_padding AdminReview_01-top">후기 관리</div>
+    		<div class="col-lg-2 text-center MyPage_padding">후기 관리</div>
     		
     <div class="container">
 	    <div class="MyPage_top-underline"></div>
@@ -43,8 +47,8 @@
         <div class="col-lg-4 text-center adminUser_01-content-header">
         <form>
 			<input type="radio" name="answer" checked="checked" value="전체" /> 전체 
-			<input type="radio" name="answer" value="답변" /> 답변 
-			<input type="radio" name="answer" value="미답변" /> 미답변 
+			<input type="radio" name="answer" class="adminReview_01-radio-box" value="답변" /> 답변 
+			<input type="radio" name="answer" class="adminReview_01-radio-box" value="미답변" /> 미답변 
         	<input class="adminUser_01-button-top" type="button" value="조회하기">
 		</form>
         </div>
@@ -85,8 +89,8 @@
         	[후기 제목]
         </div>
         <div class="col-lg-2 text-center adminProduct_01-content-item">
-        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="후기 삭제">
-        	<input class="adminProduct_01-product" type="button" value="답변 작성">
+        	<input class="adminProduct_01-product adminProduct_01-product-top" type="button" value="후기 삭제" onclick="review_cancel()">
+        	<input class="adminProduct_01-product" type="button" value="답변 작성" onclick="location.href='${contextPath}/adminReview_01_01.do'">
         </div>
 	</div>
 	
@@ -97,3 +101,10 @@
 	    </div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	function review_cancel() {
+		let returnValue = confirm('삭제하시겠습니까?');	
+	}
+</script>

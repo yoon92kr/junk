@@ -17,7 +17,7 @@
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
 			<h3 class="sub-title login_04-sub-title">신규 비밀번호 설정</h3>
-			<form action="${contextPath}/login_05.do">
+			<form action="${contextPath}/user/login_05.do">
 				<input class="login_01-pwd-box" type="password"
 					placeholder="새로운 비밀번호를 입력해주세요."> 
 				<input class="login_01-pwd-box" type="password"

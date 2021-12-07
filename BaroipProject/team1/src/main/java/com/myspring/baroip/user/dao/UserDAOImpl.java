@@ -16,8 +16,8 @@ public class UserDAOImpl implements UserDAO{
 	
 	@Override
 	public UserVO login(Map loginMap) throws DataAccessException{
-		UserVO member=(UserVO)sqlSession.selectOne("mapper.user.login",loginMap);
-	   return member;
+		UserVO user=(UserVO)sqlSession.selectOne("mapper.user.login",loginMap);
+	   return user;
 	}
 
 }

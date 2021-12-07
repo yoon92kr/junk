@@ -31,7 +31,7 @@
         <div class="col-lg-6 offset-lg-3">
         <!-- 로그인 페이지 하단 버튼 -->
         	<div class="login_03-bottom-btn">
-	        	<a class="login_03-login-page-btn login_05-btn" href="${contextPath}/login_01.do">
+	        	<a class="login_03-login-page-btn login_05-btn" href="${contextPath}/user/login_01.do">
 					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/login_page_btn.png" alt="비밀번호찾기 페이지_로그인페이지 이동 버튼 이미지">
 			     </a>
         	</div>

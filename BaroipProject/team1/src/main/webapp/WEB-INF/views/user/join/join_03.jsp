@@ -29,7 +29,7 @@
     
     <div class="row">
         <div class="col-lg-3 offset-lg-3">
-        <!-- 로그인 페이지 하단 버튼 -->
+        <!-- 메인 페이지 -->
         	<div class="login_03-bottom-btn">
 	        	<a class="login_03-id-pwd-find-btn" href="${contextPath}/main.do">
 					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/main_page_btn.png" alt="회원가입 가입완료 메인페이지 버튼 이미지">
@@ -37,9 +37,9 @@
         	</div>
         </div>
         <div class="col-lg-3">
-        <!-- 아이디 / 비밀번호 찾기 하단 버튼 -->
+        <!-- 로그인 페이지 -->
        		<div class="login_03-bottom-btn">
-	        	<a class="login_03-login-page-btn" href="${contextPath}/login_01.do">
+	        	<a class="login_03-login-page-btn" href="${contextPath}/user/login_01.do">
 					<img class="bottom_btn_size" src="${contextPath}/resources/img/common/login_page_btn.png" alt="회원가입 가입완료 로그인페이지 버튼 이미지">
 			    </a>
 		    </div>

@@ -1,4 +1,5 @@
-<!-- 2021.12.03 강보석 -->
+<!-- 2021.12.06 강보석  -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
@@ -6,27 +7,23 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <div class="container">
-
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2 text-center">
-        	<h1 class="page_title">관리자 페이지</h1>
-        </div>
-	</div>
-	
-	<div class="row">
-        <div class="col-lg-12 text-left admincs_02_content-body">
-        	<h6 class="order_01-sub-title-page">
-        		<span class="order_01-sub-title">문의 관리</span>
-        	</h6>
-        </div>
+<div class="MyPage_title">
+    	<div class="row">
+    		<div class="col-lg-2 text-center MyPage_padding AdminReview_01-top">문의 관리</div>
+    		
+    <div class="container">
+	    <div class="MyPage_top-underline"></div>
+    </div>
+    </div>
     </div>
     
-    <div class="row">
+	<div class="row">
         <div class="col-lg-4 text-center adminUser_01-content-header">
         	조회 유형
         	<select class="adminUser_01-select-box-lookup" onchange="selectLookup(this.value)">
         			<option value="ranking">회원 등급</option>
-			        <option value="joinDate">가입일</option>
+			        <option value="joinDate">문의기간</option>
+			        <option value="id">상세조회</option>
         		</select>
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
@@ -37,15 +34,25 @@
         			<option value="단골">단골 회원</option>
         			<option value="FLEX">FLEX 회원</option>
         		</select>
-        		<input id="adminUser_01-member-date-text" class="adminUser_01-select-box-lookup" type="date">
+
+        		<input id="adminUser_01-member-date-text" class="adminUser_01-select-box-lookup" type="date"> 
         		<input id="adminUser_01-member-id-text" class="adminUser_01-select-box-lookup" type="text">
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
+   
+        <form>
+			<input type="radio" name="chk_info" value="Very satisfied "
+					checked="checked"> 전체
+					<input type="radio"
+					class="mypage_radiobox" name="chk_info" value="Satisfied">답변
+					<input type="radio" 
+					class="mypage_radiobox" name="chk_info" value="Moderately ">미답변
         	<input class="adminUser_01-button-top" type="button" value="조회하기">
-        	<input class="adminUser_01-button-top" type="button" value="삭제하기">
+		</form>
+		
         </div>
     </div>
-    
+ 
     <div class="row">
 		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
 	        <h6 class="order_01-content-hedaer-text">문의 번호</h6>
@@ -57,55 +64,46 @@
 	        <h6 class="order_01-content-hedaer-text">문의 상품</h6>
 	    </div>
 	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
-	        <h6 class="order_01-content-hedaer-text">작성자 ID</h6>
+	        <h6 class="order_01-content-hedaer-text">작성자ID</h6>
 	    </div>
-	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
-	        <h6 class="order_01-content-hedaer-text">문의 제목</h6>
-	    </div>
-	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
-	        <h6 class="order_01-content-hedaer-text">문의 수정</h6>
+	    <div class="col-lg-4 text-left order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text AdminReview_01-text-position">문의 제목</h6>
 	    </div>
 	</div>
-    
-    <div class="row">
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	<div>[회원 아이디]</div>
+	
+	<div class="row">
+        <div class="col-lg-2 text-center order_01-content-item">
+        	<div>[문의 번호]</div>
         </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	[회원 등급]
+        <div class="col-lg-2 text-center order_01-content-item">
+        	[문의 유형]
         </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	[회원 누적 구매액]
+        <div class="col-lg-2 text-center order_01-content-item">
+        	[문의 상품]
         </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	[회원 누적 구매 건수]
+        <div class="col-lg-2 text-center order_01-content-item">
+        	[작성자ID]
         </div>
-        <div class="col-lg-2 text-center adminUser_01-member-change-item">
-        	[회원 접속일]
+        <div class="col-lg-2 text-center order_01-content-item">
+        	[문의 제목]
         </div>
-        <div class="col-lg-2 adminUser_01-member-change-item">
+        <div class="col-lg-2 text-center adminProduct_01-content-item">
+        	<input class="adminProduct_01-product adminProduct_01-product-top" 
+        	 type="button" value="후기 삭제" onclick="alert('삭제하시겠습니까?')">
+        	 <form action="${contextPath}/adminCS_02_01.do">
+        	<input class="adminProduct_01-product" type="submit"  value="답변 작성">
+        	</form>
         	
-
-					<a class="myPage_test-t" href="#"><img
-						src="${contextPath}/resources/img/common/Q&A_correct.png" alt="문의내역 목록 수정하기버튼 이미지"></a>
-						<br>
-						
-					<a class="myPage_test-t" href="#"><img
-						src="${contextPath}/resources/img/common/Q&A_delete.png" alt="문의내역 목록 삭제버튼 이미지"
-						></a>
-						
         </div>
-    </div>
-
+	</div>
+	
+	<div class="MyPage_03_bottom_return_next">
+		<div class="row">
+        	<div class="col-lg-2 text-center MyPage_03_left_text">◁이전</div>
+        	<div class="col-lg-2 text-center MyPage_03_right_text">다음▷</div>
+	    </div>
+	</div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -156,4 +154,3 @@ function selectLookup(selectValue) {
     
  }
 </script>
-

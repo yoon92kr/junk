@@ -13,7 +13,7 @@
     </div>
 		
     	<div class="row">
-    		<div class="col-lg-2 text-center MyPage_padding MyPage_title_02">주문 관리</div>
+    		<a href="${contextPath}/adminOrder.do" class="col-lg-2 text-center MyPage_padding MyPage_title_02 adminOrder_hov">주문 관리</a>
     		<div class="col-lg-10 text-left MyPage_padding">반품 / 교환</div>
     		
     <div class="container">
@@ -21,7 +21,6 @@
     </div>
     </div>
     </div>
-
    
     <div class="row">
         <div class="col-lg-4 text-center adminUser_01-content-header">
@@ -47,28 +46,40 @@
         		<input id="adminUser_01-member-id-text" class="adminUser_01-select-box-lookup" type="text">
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
+		<form>
+			<input type="radio" name="answer" checked="checked" value="전체" /> 전체 
+			<input type="radio" name="answer" class="adminReview_01-radio-box" value="답변" /> 답변 
+			<input type="radio" name="answer" class="adminReview_01-radio-box" value="미답변" /> 미답변 
         	<input class="adminUser_01-button-top" type="button" value="조회하기">
-        	<input class="adminUser_01-button-top" type="button" value="삭제하기">
+		</form>
         </div>
     </div>
     
-    	<div class="MyPage_03_center-box text-center">
     <div class="row">
-        <div class="col-lg-2">회원아이디</div>
-        <div class="col-lg-3">주문 내역</div>
-        <div class="col-lg-2">결제 금액</div>
-        <div class="col-lg-3">반품 / 교환 사유</div>
-        <div class="col-lg-2">승인 / 거절</div>
-    </div>
-    </div>
+		<div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">회원아이디</h6>
+	    </div>
+	    <div class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">주문 내역</h6>
+	    </div>
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">결제 금액</h6>
+	    </div>
+	    <div class="col-lg-3 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">반품 / 교환 사유</h6>
+	    </div>
+	    <div class="col-lg-2 text-center order_01-content-header myPage_05-member-ranking-info adminUser_01-header-border">
+	        <h6 class="order_01-content-hedaer-text">승인 / 거절</h6>
+	    </div>
+	</div>
     
     
    	<div class="AdminReturn_center-box-01 text-center">
 	<div class="row">
         <div class="col-lg-2 text-center">
         	<div>[회원아이디]</div>
-        	<input class="MyPage_03-submit-box-01" type="button" value="반품 신청서 확인">
-        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보">
+        	<input class="MyPage_03-submit-box-01" type="button" value="반품 신청서 확인" onclick="location.href='${contextPath}/adminReturn_02.do'">
+        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보" onclick="location.href='${contextPath}/myPage_03_01.do'">
         </div>
         	<div class="col-lg-2 MyPage_03_text_position_04">[주문 상품 명]</div>
         	<div class="col-lg-2 MyPage_03_text_position_04">[결제 금액]</div>

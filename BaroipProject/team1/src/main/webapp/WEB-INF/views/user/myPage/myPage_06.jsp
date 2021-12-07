@@ -38,19 +38,19 @@
 	<div class="container-fluid">
 			<div class="row">
 
-			<div class="offset-lg-2 col-lg-1 text-left cs_02_header">
+			<div class="offset-lg-2 col-lg-1 text-left cs_01_01header">
 				<span>작성일자</span>
 			</div>
-			<div class="col-lg-1 text-left cs_02_header">
+			<div class="col-lg-1 text-left cs_01_01header">
 				<span>분류</span>
 			</div>
-			<div class="col-lg-1 text-left cs_02_header">
+			<div class="col-lg-1 text-left cs_01_01header">
 				<span>문의 번호</span>
 			</div>
-			<div class="col-lg-3 text-center cs_02_header">
+			<div class="col-lg-3 text-center cs_01_01header">
 				<span>문의 제목</span>
 				</div>
-			<div class="col-lg-2 text-center cs_02_header">
+			<div class="col-lg-2 text-center cs_01_01header">
 				<span>진행 상태</span>
 			</div>
 			

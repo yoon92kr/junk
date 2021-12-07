@@ -1,6 +1,7 @@
+/* À±»óÇö */
 @charset "UTF-8";
 
-/* ì¥ë°”êµ¬ë‹ˆ ì„¤ì • */
+/* Àå¹Ù±¸´Ï ¼³Á¤ */
 .cart_agree_bt {
 	margin-top: 60px;
 }
@@ -135,7 +136,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	height: 30px;
 }
 
-/* ìƒí’ˆ ëª©ë¡ ì„¤ì • */
+/* »óÇ° ¸ñ·Ï ¼³Á¤ */
 #product_01_main_img {
 	margin: 15px 0px 15px 0px;
 	width: 1600px;
@@ -186,7 +187,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	font-family: "kopub_bold";
 }
 
-/* ìƒí’ˆ ìƒì„¸ */
+/* »óÇ° »ó¼¼ */
 .product_02_main_img img {
 	margin-top: 65px;
 	margin-bottom: 30px;

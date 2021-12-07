@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import jdk.internal.org.jline.utils.Log;
-
 public class MainInterceptor extends  HandlerInterceptorAdapter{
 	
 	   @Override
@@ -18,7 +16,6 @@ public class MainInterceptor extends  HandlerInterceptorAdapter{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		   System.out.println("hello baroip");
 		   return true;
 	   }
 
@@ -61,7 +58,7 @@ public class MainInterceptor extends  HandlerInterceptorAdapter{
 				fileName = fileName.substring(fileName.lastIndexOf("/",1), fileName.length());
 			}
 			System.out.printf("viewName : [%s]%n",fileName);
-			// Log.info("viewName : ["+fileName+"]");
+
 			return fileName;
 		}
 	}

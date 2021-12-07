@@ -8,17 +8,20 @@
 
 <div class="container">
 <div class="MyPage_title">
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 text-center"><h1 class="page_title">관리자 페이지</h1></div>
+    </div>
+		
     	<div class="row">
-    		<div class="col-lg-2 text-center MyPage_padding AdminReview_01-top">답변 작성</div>
+    		<div class="col-lg-2 text-center MyPage_padding">답변 작성</div>
     		
     <div class="container">
 	    <div class="MyPage_top-underline"></div>
     </div>
     </div>
     </div>
-</div>
 
-<div class="container">
+
 	<div class="MyPage_02_01_top">
     <div class="row">
         <div class="col-lg-2 text-center MyPage_02_01_menu-left">
@@ -84,10 +87,9 @@
     
     <div class="container">
       <div class="row">
-      	<a href="${contextPath}/adminReturn_01.do" class="col-lg-2 text-center AdminReturn_02-bottom-button-2">답변 등록</a>
-    	<a href="${contextPath}/adminReturn_01.do" class="col-lg-2 text-center AdminReturn_02-bottom-button-3">목 록</a>
+      	<a href="#" class="col-lg-2 text-center AdminReturn_02-bottom-button-2">답변 등록</a>
+    	<a href="${contextPath}/adminReview_01.do" class="col-lg-2 text-center AdminReturn_02-bottom-button-3">목 록</a>
       </div>
-    </div>
     </div>
     </div>
 </div>

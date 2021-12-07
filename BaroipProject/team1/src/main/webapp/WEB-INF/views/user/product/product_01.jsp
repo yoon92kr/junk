@@ -41,8 +41,13 @@
 		<div class="col-lg-6 text-left product_01_filter">
 			<a href="#">판매 인기순</a> <a href="#">등록일순</a> <a href="#">높은 가격순</a> <a
 				href="#">낮은 가격순</a>
-
 		</div>
+		
+		<div class="col-lg-2 offset-lg-4 text-center">
+					<form class="product_01_search-box">
+						<input class="search-box" type="text">
+					</form>
+				</div>
 
 	</div>
 
@@ -75,56 +80,56 @@
 	</div>
 	<div class="item-format">
 		<div class="row">
-			<div class="col-lg-2">
-				<a href="#" class="item-title">[상품명]</a><br> <a href="#"
-					class="item-comment">[상품 설명]</a>
+			<div class="col-lg-3">
+				<a href="${contextPath}/product_02.do" class="">
+						<span class="item-title item-location-left-top">[상품명]</span>
+						<span class="item-price">[상품원가]</span>
+						<span class="item-dc">[할인]</span>
+						<br>
+						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
+						<span class="item-real-price">[판매가]</span>
+					</a>
+				</div>
+				
+				<div class="col-lg-1 text-center main_item_bottom_text">
+					<form action="${contextPath}/cart/cartLst.do">
+						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+					</form>
+				</div>
 
-			</div>
+			<div class="col-lg-3">
+				<a href="${contextPath}/product_02.do" class="">
+						<span class="item-title item-location-left-top">[상품명]</span>
+						<span class="item-price">[상품원가]</span>
+						<span class="item-dc">[할인]</span>
+						<br>
+						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
+						<span class="item-real-price">[판매가]</span>
+					</a>
+				</div>
+				
+				<div class="col-lg-1 text-center main_item_bottom_text">
+					<form>
+						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+					</form>
+				</div>
 
-			<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
-				<a href="#" class="item-price">[상품 원가]</a> <a href="#"
-					class="item-dc">[할인]</a><br> <a href="#"
-					class="item-real-price">[판매가]</a>
-			</div>
-
-
-			<div class="col-lg-1 text-center">
-				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
-			</div>
-
-			<div class="col-lg-2">
-				<a href="#" class="item-title">[상품명]</a><br> <a href="#"
-					class="item-comment">[상품 설명]</a>
-
-			</div>
-
-			<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
-				<a href="#" class="item-price">[상품 원가]</a> <a href="#"
-					class="item-dc">[할인]</a><br> <a href="#"
-					class="item-real-price">[판매가]</a>
-			</div>
-			<div class="col-lg-1 text-center">
-				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
-			</div>
-
-			<div class="col-lg-2">
-				<a href="#" class="item-title">[상품명]</a><br> <a href="#"
-					class="item-comment">[상품 설명]</a>
-
-			</div>
-
-			<div class="col-lg-1 text-left" style="padding: 0px 5px 0px 5px">
-				<a href="#" class="item-price">[상품 원가]</a> <a href="#"
-					class="item-dc">[할인]</a><br> <a href="#"
-					class="item-real-price">[판매가]</a>
-			</div>
-
-			<div class="col-lg-1 text-center">
-				<a href="#"><img class="cart-put-icon"
-					src="${contextPath}/resources/img/common/cart-put-icon.png" alt="상품리스트 장바구니 담기 버튼 이미지"></a>
-			</div>
+			<div class="col-lg-3">
+				<a href="${contextPath}/product_02.do" class="">
+						<span class="item-title item-location-left-top">[상품명]</span>
+						<span class="item-price">[상품원가]</span>
+						<span class="item-dc">[할인]</span>
+						<br>
+						<span class="item-comment item-location-left-bottom">[상품 설명]</span>
+						<span class="item-real-price">[판매가]</span>
+					</a>
+				</div>
+				
+				<div class="col-lg-1 text-center main_item_bottom_text">
+					<form>
+						<input type="image" src="${contextPath}/resources/img/common/cart-put-icon.png" alt="카트 담기 버튼 이미지">
+					</form>
+				</div>
 		</div>
 	</div>
 	<div class="row">

@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+/* ==================== 중간중간 수정 ================================= */
+/* product_01 검색창 추가 */
+.product_01_search-box {
+	padding-left: 55px;
+}
+/* join_02 비밀번호 옆 text 추가 */
+.join_02_pass_info {
+	color: #ff0000;
+	font-size: 11px;
+	margin-left: 30px;
+}
+
+/* ================================================================ */
 /* img_btn_size */
 .bottom_btn_size {
 	width: 200px;
@@ -191,6 +204,12 @@
 	font-family: 'kopub_bold';
 }
 
+.join_01_contents {
+	resize: none;
+    width: 1570px;
+    height: 170px;
+}
+
 .join_01-check-01, .order_01-check {
 	top:5px;
 	position: relative;
@@ -202,6 +221,10 @@
 	font-size: 25px;
 	position: relative;
 	left: 10px;
+}
+
+.join_01_table_class {
+	width: 100%;
 }
 
 .join_01-content-1 {
@@ -220,15 +243,24 @@
 	margin: 15px 35px;
 }
 
+.join_01_table_bottom_btn {
+	width: 500px;
+	
+}
+
 .join_01-check-02 {
 	margin-top: 20px;
 }
 
+.join_01-btn {
+	width: 30%;
+}
+
 .join_01-btn > a {
-	width: 90%;
+	/* width: 90%; */
 	height: 50px;
 	text-align: center;
-	display: block;
+ 	display: block;
 	margin-top: 20px;
 }
 
@@ -237,10 +269,6 @@
     margin-left: 61px;
     height: 50px;
     margin-top: 20px;
-}
-
-.join_01-btn-img {
-	height: 50px;
 }
 /* join_01 end */
 
@@ -702,7 +730,7 @@ form .adminProduct_01-increase {
 .adminProduct_01-header-button {
 	border: none;
 	margin: 3px 0px 0px 20px;
-	width: 70px;
+	width: 100px;
 	height: 25px;
 }
 /* adminProduct_01 end */

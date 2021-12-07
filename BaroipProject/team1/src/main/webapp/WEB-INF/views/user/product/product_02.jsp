@@ -52,9 +52,9 @@
 			<a href="${contextPath}/order_01.do">
 			<img src="${contextPath}/resources/img/common/product_buy_now.png" class="product_02_cart_btn" alt="상품상세페이지_바로구매 버튼 이미지"> 
 			</a> 
-			<a href="#">
-			<img src="${contextPath}/resources/img/common/product_get_cart.png" class="product_02_cart_btn"	alt="상품상세페이지_장바구니 담기 버튼 이미지">
-			</a>
+			<form action="${contextPath}/cart/cartLst.do">
+				<input class="product_02_cart_btn" type="image" src="${contextPath}/resources/img/common/product_get_cart.png" alt="상품상세페이지_장바구니 담기 버튼 이미지">
+			</form>
 
 		</div>
 

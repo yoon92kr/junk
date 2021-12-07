@@ -420,7 +420,7 @@
 
 .AdminReturn_center-box-01 {
 	border-bottom: 1px solid #000000;
-	font-size: 16px;
+	font-size: 14px;
 	padding-top: 15px;
 	height: 120px;
 }
@@ -516,10 +516,19 @@
 	color: #fff;
 }
 
+.adminOrder_hov {
+	color: #000000;
+}
+
+
 .AdminReview_01-top {
 	margin-top: 92px;
 }
 
 .AdminReview_01-text-position{
 	margin-left: 50px;
+}
+
+.adminReview_01-radio-box {
+	margin-left: 30px;
 }

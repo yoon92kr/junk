@@ -6,7 +6,7 @@
 
   <typeAliases>
     <typeAlias type="com.myspring.baroip.user.vo.UserVO" alias="userVO" />
-    
+    <typeAlias type="com.myspring.baroip.cart.vo.CartVO" alias="cartVO" />
   </typeAliases>
 
 </configuration>

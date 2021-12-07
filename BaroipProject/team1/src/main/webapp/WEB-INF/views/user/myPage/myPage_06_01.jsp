@@ -67,22 +67,25 @@
 <div class="row">
 <div class="offset-lg-3 col-lg-2 text-center">
 				<div class="notice_back_btn">
-					<a href="#"><img
-						src="${contextPath}/resources/img/common/cs_correct_01.png" alt="1:1문의 수정하기 버튼 이미지"></a>
+					<form>
+					<input type="image"
+						src="${contextPath}/resources/img/common/cs_correct_01.png" alt="mypage06 문의 수정하기 버튼 이미지">
+						</form>
 				</div>
 			</div>
 		
 		  <div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
 					<a href="${contextPath}/myPage_06.do"><img
-						src="${contextPath}/resources/img/common/cs_list.png" alt="1:1문의 목록 버튼 이미지"></a>
+						src="${contextPath}/resources/img/common/cs_list.png" alt="mypage06 문의내역 목록 버튼 이미지"></a>
 				</div>
 			</div>
 			
 			<div class="col-lg-2 text-center">
 				<div class="notice_back_btn">
 					<a href="#"><img
-						src="${contextPath}/resources/img/common/cs_delete_01.png" alt="1:1문의 삭제하기 버튼 이미지"></a>
+						src="${contextPath}/resources/img/common/cs_delete_01.png" alt="mypage06 문의 삭제하기 버튼 이미지"
+						onclick="alert('삭제하시겠습니까?')"></a>
 				</div>
 			</div>
 			

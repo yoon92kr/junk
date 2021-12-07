@@ -33,12 +33,6 @@
 		]]>
 	</select>
 
-	<!--아이디 중복체크 쿼리문-->
-	<select id="selectOverlappedID" parameterType="String" resultType="String">
-	   select if(count(*)>0, 'true', 'false')
-	   from t_shopping_member
-	   where member_id = #{id}
-	</select>
 
 
 </mapper>

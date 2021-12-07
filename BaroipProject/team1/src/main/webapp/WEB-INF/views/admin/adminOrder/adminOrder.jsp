@@ -14,7 +14,7 @@
 		
     	<div class="row">
     		<div class="col-lg-2 text-center MyPage_padding">주문 관리</div>
-    		<div class="col-lg-10 text-left MyPage_padding MyPage_title_02">반품 / 교환</div>
+    		<a href="${contextPath}/adminReturn_01.do" class="col-lg-2 text-left MyPage_padding MyPage_title_02 adminOrder_hov">반품 / 교환</a>
     		
     <div class="container">
 	    <div class="MyPage_top-underline"></div>
@@ -27,11 +27,11 @@
         <div class="col-lg-4 text-center adminUser_01-content-header">
         	조회 유형
         	<select class="adminUser_01-select-box-lookup" onchange="selectLookup(this.value)">
-        			<option value="ranking">회원 등급</option>
-			        <option value="joinDate">가입일</option>
-			        <option value="lastAccess">최종 접속일</option>
-			        <option value="id">아이디</option>
-			        <option value="birthYear">생년월일</option>
+        			<option value="id">회원 아이디</option>
+			        <option value="product">주문 상품</option>
+			        <option value="pay">결제 금액</option>
+			        <option value="date">주문 일자</option>
+			        <option value="delivery">배송 상태</option>
         		</select>
         </div>
         <div class="col-lg-4 text-center adminUser_01-content-header">
@@ -75,7 +75,7 @@
 	<div class="row">
         <div class="col-lg-2 text-center adminProduct_01-content-item">
         	<div>[회원 아이디]</div>
-        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보">
+        	<input class="MyPage_03-submit-box-01" type="button" value="주문 상세 정보" onclick="location.href='${contextPath}/myPage_03_01.do'">
         </div>
         <div class="col-lg-2 text-center order_01-content-item">
         	[주문 상품 명]
@@ -109,80 +109,3 @@
     
 </div>
 
-
-
-
-
-<script type="text/javascript">
-function Productchange(selectValue) {
-	let adminProduct_01_Date = '#adminProduct_01-productUpDate-text';
-	let adminUser_01_name = '#adminProduct_01-productName-text';
-
-	let adminProduct_01 = '#adminProduct_01-'.concat(selectValue, '-text');
-
-
-	if (adminProduct_01 == adminProduct_01_Date) {
-	   document.querySelector(adminProduct_01_Date).style.display = 'inline';
-	   document.querySelector(adminUser_01_name).style.display = 'none';
-	}
-	else if (adminProduct_01 == adminUser_01_name) {
-	   document.querySelector(adminUser_01_name).style.display = 'inline';
-	   document.querySelector(adminProduct_01_Date).style.display = 'none';
-	}
- }
- 
-/*---------- 수량 증감 input 박스 설정 ----------*/
-
-/* 수량 증감 */
-function increaseValue(tagId) {
-	let countValue = parseInt(
-			document.getElementById('adminProdut_01_cart_item_count').value, 10);
-
-	countValue = isNaN(countValue) ? 0 : countValue;
-	countValue++;
-	document.getElementById('adminProdut_01_cart_item_count').value = countValue;
-};
-
-function decreaseValue(tagId) {
-
-	let countValue = parseInt(
-			document.getElementById('adminProdut_01_cart_item_count').value, 10);
-	if (countValue <= 0) {
-		alert("수량은 0보다 작을 수 없습니다.");
-	}
-	
-	countValue = isNaN(countValue) ? 0 : countValue;
-	countValue < 2 ? countValue = 2 : '';
-	countValue--;
-	document.getElementById('adminProdut_01_cart_item_count').value = countValue;
-};
-/* 수량입력 후 엔터 입력시 이벤트 */
-
-function searchEvt(targetValue, targetId) {
-
-	if (targetValue == "" || targetValue < 0) {
-		alert('수량은 0보다 작을 수 없습니다.');
-		document.getElementById(targetId).value = 0;
-	}
-
-}
-
-/* 수량입력 후 다른 영역 클릭 시 이벤트 */
-window.onload = eventPlus();
-
-function eventPlus() {
-
-	document.itemCountBox.adminProdut_01_cart_item_count.onblur = eventGo;
-
-}
-function eventGo() {
-	if (this.value == "" || this.value < 0) {
-		alert('수량은 0보다 작을 수 없습니다.');
-		document.getElementById(this.id).value = 0;
-	}
-
-}
-</script>    
-    
-    
-    

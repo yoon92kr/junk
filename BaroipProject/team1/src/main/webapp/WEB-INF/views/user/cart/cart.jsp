@@ -137,8 +137,8 @@
 <div class="cart_list_order_bt">
 	<div class="row">
 
-		<div class="col-lg-3 offset-lg-2"><a href="#"><img src="${contextPath}/resources/img/common/all_item_order.png" alt="장바구니 전체 주문 버튼 이미지"></a></div>
-		<div class="col-lg-3"><a href="#"><img src="${contextPath}/resources/img/common/select_item_order.png" alt="장바구니 선택 주문 버튼 이미지"></a></div>
+		<div class="col-lg-3 offset-lg-2"><a href="${contextPath}/order_01.do"><img src="${contextPath}/resources/img/common/all_item_order.png" alt="장바구니 전체 주문 버튼 이미지"></a></div>
+		<div class="col-lg-3"><a href="${contextPath}/order_01.do"><img src="${contextPath}/resources/img/common/select_item_order.png" alt="장바구니 선택 주문 버튼 이미지"></a></div>
 		<div class="col-lg-2"><a href="${contextPath}/main.do"><img src="${contextPath}/resources/img/common/continue_shopping.png" alt="장바구니 쇼핑 계속하기 버튼 이미지"></a></div>
 	
 	</div>
