@@ -72,7 +72,7 @@
 	</resultMap>
 	<insert id="insertNewGoods" parameterType="java.util.Map"   >
 		<selectKey resultType="String" keyProperty="goods_id" order="BEFORE">
-	    	select seq_goods_id.nextval from dual
+	    	select nextval('seq_goods_id')
 	    </selectKey>
 	    
 	    <![CDATA[
@@ -124,7 +124,7 @@
 	</insert> 
 		<insert id="insertGoodsImageFile" parameterType="imageFileVO"   >
 		<selectKey resultType="int" keyProperty="image_id" order="BEFORE">
-	    	select seq_image_id.nextval from dual
+	    	select nextval('seq_image_id') from dual
 	    </selectKey>
 	    <![CDATA[
 		   insert into t_goods_detail_image (image_id,
@@ -142,14 +142,16 @@
 	<select id="selectNewGoodsList" resultMap="goodsResult"   parameterType="java.util.Map"  >
 	    <![CDATA[
 		  select * from (
-			   select rowNum as recNum,
+			   select (@rowNum := @rowNum+1) as recNum,
 			   		  goods_id,
 			          goods_title,
 			          goods_writer,
 			          goods_publisher,
 			          goods_sales_price,
-			          to_char(goods_creDate,'YYYY-MM-DD')  as goods_creDate,
-			          to_char(goods_published_date,'YYYY-MM-DD') as goods_published_date
+					  date_format(goods_creDate,'%Y-%m-%d')  as goods_creDate,
+                      date_format(goods_published_date,'%Y-%m-%d') as goods_published_date
+                      
+
 			       from (
 			             select  goods_id,
 			             		 goods_title,
@@ -159,21 +161,25 @@
 			             		 goods_creDate,
 			             		 goods_published_date
 			              from t_shopping_goods 
-			                where  to_char(goods_creDate,'YYYY-MM-DD')  between #{beginDate} and #{endDate}
+			                where goods_creDate in (select goods_creDate from t_shopping_goods where goods_creDate between #{beginDate} and date_add(#{endDate}, interval 1 day)) 
+                            
 			               order by goods_creDate desc
-					    )
-				)							
-			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
+					    )as sub, (select (@rowNum := 0)) as checking
+				) as subquery
+                where				
+		recNum between (#{section}-1)*100+(#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10			        
     	]]>
 	</select>
 	
 	<select id="selectOrderGoodsList" resultMap="orderGoodsResult"   parameterType="java.util.Map"  >
-		  select * from (
-			    select rowNum as recNum,t.*
+		 select * from (
+			    select (@rowNum := @rowNum +1) as recNum,t.*
 			       from (
 			              select  *  from t_shopping_order 
-			              where to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
+			            
+                          where pay_order_time between #{beginDate} and #{endDate}
+                          
+                          
 			                <if test="search_type=='orderer_id'">
 			                  AND orderer_id=#{search_word}
 			                </if>
@@ -184,10 +190,9 @@
 			                   AND pay_orderer_hp_num=#{search_word} 
 			                </if>
 			              order by PAY_ORDER_TIME desc
-					    ) t
-				)							
-			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
+					    ) t, (select (@rowNum := 0)) as check
+				)	as a						
+			where recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10						        
 	</select>
 	
  
@@ -195,7 +200,7 @@
 	
 	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
 	    <![CDATA[
-		     select g.*,to_char(g.goods_published_date,'YYYY-MM-DD') as goods_published_date, d.fileName from t_shopping_goods g, t_goods_detail_image d
+		     select g.*,date_format(g.goods_published_date,'%Y-%m%d') as goods_published_date, d.fileName from t_shopping_goods g, t_goods_detail_image d
 	        where g.goods_id=d.goods_id
 	        and d.filetype='main_image'
 	        and g.goods_id=#{goods_id}

@@ -8,6 +8,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="log"/>
+			<item value="annotaion"/>
 			<item value="pulg"/>
 			<item value="mapper.goods.selectGoodsList"/>
 			<item value="mapper.goods.selectGoodsList "/>
@@ -21,15 +23,13 @@
 			<item value="json"/>
 			<item value="Commons"/>
 			<item value="commons"/>
-			<item value="io"/>
-			<item value="tiles"/>
 		</list>
 		<list key="replacehistory">
 			<item value="com.myspring.project"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="854"/>
+		<item key="DIALOG_X_ORIGIN" value="545"/>
 		<item key="DIALOG_Y_ORIGIN" value="485"/>
 		<item key="DIALOG_WIDTH" value="288"/>
 		<item key="DIALOG_HEIGHT" value="373"/>
