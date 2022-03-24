@@ -2,13 +2,13 @@ package com.myspring.restful;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 public class Threadpool {
-	// ExecutorService 인터페이스 구현객체 Executors 정적메서드를 통해 최대 스레드 개수가 2인 스레드 풀 생성 
-			ExecutorService executorService = Executors.newFixedThreadPool(2);
+	// ExecutorService 인터페이스 구현객체 Executors 정적메서드를 통해 최대 스레드 개수가 2인 스레드 풀 생성
+	ExecutorService executorService = Executors.newFixedThreadPool(2);
 
-			for(int i = 0; i < 10; i++){
+	for(
+	int i = 0;i<10;i++){
 				Runnable runnable = new Runnable() {
 
 					@Override
@@ -21,8 +21,14 @@ public class Threadpool {
 
 						System.out.println("[총 스레드 개수:" + poolSize + "] 작업 스레드 이름: "+threadName);
 
+						
 						//일부로 예외 발생 시킴
 						int value = Integer.parseInt("예외");
+						
+						System.out.println("MainThread Start");
+						for(int i=1;i<=3;i++){
+							Thread thread=new Thread(new Code179("Thread"+i));
+							thread.start();
 					}
 				};
 
