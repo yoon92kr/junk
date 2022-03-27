@@ -1,8 +1,11 @@
 package com.myspring.restful.socket;
 
-import java.io.DataOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -17,32 +20,36 @@ public class SocketService {
 
 
 	    public static void main(String[] args) throws IOException {
-	         int port = 5050;
+	    	
+	    	 Socket socket = null;                //Client와 통신하기 위한 Socket
+	         ServerSocket server_socket = null;  //서버 생성을 위한 ServerSocket 
+	         BufferedReader in = null;            //Client로부터 데이터를 읽어들이기 위한 입력스트림
+	         PrintWriter out = null;                //Client로 데이터를 내보내기 위한 출력 스트림
+	         
+	         try{
+	             server_socket = new ServerSocket(특정 포트 입력);
+	             
+	         }catch(IOException e)
+	         {
+	             System.out.println("해당 포트가 열려있습니다.");
+	         }
+	         try {
+	             
+	             System.out.println("서버 오픈!!");
+	             socket = server_socket.accept();    //서버 생성 , Client 접속 대기
+	             
+	             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));    //입력스트림 생성
+	             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))); //출력스트림 생성
+	             
+	             String str = null;
+	             str = in.readLine();                //Client로부터 데이터를 읽어옴
 
-	         int number = Integer.parseInt(args[0]); // 명렬줄로 들어온 텍스트값을 정수형으로 변환시켜 저장
-	         String str = new String(args[1]);
-
-
-
-	         //서버 소켓을 생성
-	         ServerSocket ssk = new ServerSocket(port); 
-
-	         System.out.println("접속 대기중");
-
-	         while(true) { //실제로 송신을 하는것은 바로 저 sock 이라는 변수이다.
-	         Socket sock = ssk.accept(); 
-	         System.out.println("사용자 접속 했습니다");
-	         System.out.println("Client ip :"+ sock.getInetAddress());
-
-	         //클라이언트와 연결을 하기위한 스트림을 생성한다.
-	         OutputStream ous = sock.getOutputStream();
-	         DataOutputStream dous = new DataOutputStream(ous); 
-
-	         dous.writeUTF(str);
-	         dous.writeInt(number);
-	         dous.flush();
-	         dous.close();
-	         sock.close();
+	             System.out.println("Client로 부터 온 메세지 : " + str);
+	             
+	             out.write(str);
+	             out.flush();
+	             socket.close();
+	         }catch(IOException e){}
 
 
 	         } 
