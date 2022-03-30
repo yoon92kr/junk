@@ -1,15 +1,15 @@
 package com.myspring.restful;
 
-import java.util.Locale;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
 	
-	@ReqeusetMapping("/abd")
-	public String home(Locale locale, Model model) {
+	@ResponseBody
+	@RequestMapping("/test.do")
+	public String home() {
 		
 		return "home";
 	}
