@@ -11,6 +11,7 @@ public class HashingTool {
 		return result;
 	}
 
+	// byte[] 값을 hashing 후, String으로 반환해주는 메소드
 	private String hashing(byte[] target, String salt) throws Exception {
 
 		String result = "";

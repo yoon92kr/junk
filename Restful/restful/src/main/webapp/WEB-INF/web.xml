@@ -52,4 +52,9 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- Session 유지시간 설정 (단위 : 분) -->
+	<session-config>
+		<session-timeout>50</session-timeout>
+	</session-config>
+
 </web-app>
