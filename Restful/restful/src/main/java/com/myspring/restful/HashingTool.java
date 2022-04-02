@@ -12,6 +12,8 @@ public class HashingTool {
 	}
 
 	// byte[] 값을 hashing 후, String으로 반환해주는 메소드
+	// salt에는 UserID를 입력한다.
+	// target에는 hashing 하고자 하는 문자열을 입력한다.
 	private String hashing(byte[] target, String salt) throws Exception {
 
 		String result = "";
