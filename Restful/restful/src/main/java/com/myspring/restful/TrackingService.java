@@ -6,24 +6,35 @@ import java.util.Map;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TrackingService {
 	
+	@Autowired
+	CommonService commonService;
+	
 	Map<String, Object> result = new HashMap<String, Object>();
 	
 	public Map<String, Object> findDelivery(Map<String, Object> inform) {
 		
-		String deliveryId = (String)inform.get("deliveryId");
+		String deliveryId = "";
+		
+		if(commonService.nullCheck((String)inform.get("deliveryId"))) {
+			deliveryId = (String)inform.get("deliveryId");	
+		}
+		
 		
 		// 배송업체 정보가 null일 경우
-		if(inform.get("company").equals(null) && inform.get("company").equals("") ) {
-			
+		if(deliveryId.length() == 10) {
+			result = logenDelivery(deliveryId);
 		}
-		// 배송업체 정보가 입력된 경우
-		else {
-			
+		else if(deliveryId.length() == 11) {
+			result = cjDelivery(deliveryId);
+		}
+		else if(deliveryId.length() == 13) {
+			result = PostDelivery(deliveryId);
 		}
 		
 		return result;
