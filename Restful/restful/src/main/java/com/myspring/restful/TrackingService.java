@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,28 +14,36 @@ public class TrackingService {
 	@Autowired
 	CommonService commonService;
 	
-	Map<String, Object> result = new HashMap<String, Object>();
-	
 	public Map<String, Object> findDelivery(Map<String, Object> inform) {
 		
 		String deliveryId = "";
+		String url = "https://apis.tracker.delivery/carriers";
+				
+		Map<String, Object> result = new HashMap<String, Object>();
 		
-		if(commonService.nullCheck((String)inform.get("deliveryId"))) {
+		if(!commonService.nullCheck((String)inform.get("deliveryId"))) {
 			deliveryId = (String)inform.get("deliveryId");	
-		}
+		}		
 		
-		
-		// 배송업체 정보가 null일 경우
-		if(deliveryId.length() == 10) {
-			result = logenDelivery(deliveryId);
+		// Modern blanco의 경우 지정 택배사가 3개이며, 각 택배사 별 운송장 번호가 상이하기때문에 아래와 같은 조건문을 사용한다.
+		// 로젠
+		if(deliveryId.length() == 11) {
+			url = url +  "/kr.logen/tracks/" + deliveryId;
 		}
-		else if(deliveryId.length() == 11) {
-			result = cjDelivery(deliveryId);
+		// CJ대한통운
+		else if(deliveryId.length() == 10) {
+			url = url +  "/kr.cjlogistics/tracks/" + deliveryId;
 		}
+		// 우체국
 		else if(deliveryId.length() == 13) {
-			result = PostDelivery(deliveryId);
+			url = url +  "/kr.epost/tracks/" + deliveryId;
 		}
 		
+		result = commonService.callAPI(url);
+		System.out.println(result.get("from"));
+		System.out.println(result.get("to"));
+		System.out.println(result.get("state"));
+		System.out.println(result.get("progresses"));
 		return result;
 		
 	}
@@ -47,13 +54,13 @@ public class TrackingService {
 	// 로젠택배 배송조회 
 	private Map<String, Object> logenDelivery(String deliveryId) {
 		
-		
+		Map<String, Object> result = new HashMap<String, Object>();
+		// 로젠 배송조회 API 호출
 		String url = "https://www.ilogen.com/web/personal/trace/" + deliveryId;
 
 		try {
 			Document doc = Jsoup.connect(url).get();	
-			Elements b = doc.select("b");
-			Elements tr = doc.select("tr");
+			System.out.println(doc);
 		}
 		
 		catch(Exception e) {
@@ -67,10 +74,13 @@ public class TrackingService {
 	// CJ대한통운 배송조회
 	private Map<String, Object> cjDelivery(String deliveryId) {
 		
+		Map<String, Object> result = new HashMap<String, Object>();
+		// CJ대한통운 배송조회 API 호출
 		String url = "http://nplus.doortodoor.co.kr/web/detail.jsp?slipno=" + deliveryId;
 
 		try {
 			Document doc = Jsoup.connect(url).get();	
+			System.out.println(doc);
 		}
 		
 		catch(Exception e) {
@@ -85,10 +95,13 @@ public class TrackingService {
 	// 우체국 배송조회
 	private Map<String, Object> PostDelivery(String deliveryId){
 		
+		Map<String, Object> result = new HashMap<String, Object>();
+		// 우체국 배송조회 API 호출
 		String url = "http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=" + deliveryId;
 		
 		try {
 			Document doc = Jsoup.connect(url).get();	
+			System.out.println(doc);
 		}
 		
 		catch(Exception e) {
