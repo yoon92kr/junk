@@ -16,9 +16,8 @@ public class TrackingController {
 	TrackingService trackingService;
 
 
-	
-	// 회원일 경우, DB에 저장된 배송정보(배송업체 / 운송장번호)를 확인한뒤 배송조회를 진행한다.
-	// 비회원의 경우, 입력된 송장번호를 기준으로 배송정보를 확인한 뒤, 배송조회를 진행한다.
+// 비회원의 경우 송장번호를 기재하면 length에 따른 택배사 분기
+	// 회원의 경우, 주문상품의 배송정보를 db에서 추출
 	
 	@ResponseBody
 	@RequestMapping(value = "/search.do", method = RequestMethod.POST, produces = "application/json; charset=utf-8")

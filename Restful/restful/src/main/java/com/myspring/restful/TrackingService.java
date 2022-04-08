@@ -39,11 +39,10 @@ public class TrackingService {
 			url = url +  "/kr.epost/tracks/" + deliveryId;
 		}
 		
+		// 반환된 정보를 파싱 후 url로 호출
+		// 외부 api 사용할지 고민중.
+		
 		result = commonService.callAPI(url);
-		System.out.println(result.get("from"));
-		System.out.println(result.get("to"));
-		System.out.println(result.get("state"));
-		System.out.println(result.get("progresses"));
 		return result;
 		
 	}
