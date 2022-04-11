@@ -36,6 +36,7 @@ public class CommonService {
 		return flag;
 	}
 
+
 	public Map<String, Object> callAPI(String param) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -46,21 +47,19 @@ public class CommonService {
 					
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 			
-			conn.setRequestMethod("GET"); // http 메서드
-			conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8"); // header Content-Type 정보
-			conn.setDoOutput(true); // 서버로부터 받는 값이 있다면 true
+			conn.setRequestMethod("GET"); 
+			conn.setDoOutput(true); 
 			
-			// 서버로부터 데이터 읽어오기
-			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
 			StringBuilder sb = new StringBuilder();
 			String line = null;
 			
-			while((line = br.readLine()) != null) { // 읽을 수 있을 때 까지 반복
+			while((line = br.readLine()) != null) {
 				sb.append(line);
 			}
 				
 			result = getMapFromJsonObject(new JSONObject(sb.toString()));
-			
+						
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,5 +87,7 @@ public class CommonService {
 	    }
 	    return map;
 	}
+	
+
 
 }

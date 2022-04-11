@@ -20,12 +20,13 @@ public class TrackingController {
 	// 회원의 경우, 주문상품의 배송정보를 db에서 추출
 	
 	@ResponseBody
-	@RequestMapping(value = "/search.do", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/search.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public Map<String, Object> craw_select(@RequestParam Map<String, Object> inform) throws Exception {
 		
 		
 		Map<String, Object> testmap = trackingService.findDelivery(inform);
 		
+
 		return testmap;
 	}
 	

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
 	@ResponseBody
-	@RequestMapping(value = "/hashing.do", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/hashing.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public String home(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam HashMap<String, Object> param) {
 
