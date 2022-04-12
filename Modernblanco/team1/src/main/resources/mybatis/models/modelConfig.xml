@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+  <typeAliases>
+    <typeAlias type="com.myspring.baroip.user.vo.UserVO" alias="userVO" />
+    <typeAlias type="com.myspring.baroip.cart.vo.CartVO" alias="cartVO" />
+	<typeAlias type="com.myspring.baroip.notice.vo.NoticeVO" alias="noticeVO" />	
+	<typeAlias type="com.myspring.baroip.product.vo.ProductVO" alias="productVO" />
+	<typeAlias type="com.myspring.baroip.image.vo.ImageVO" alias="imageVO" />
+	<typeAlias type="com.myspring.baroip.order.vo.OrderVO" alias="orderVO" />
+  </typeAliases>
+
+</configuration>
+
+
+

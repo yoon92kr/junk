@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="CsLayout" template="/WEB-INF/views/base/layout.jsp">
+		<put-attribute name="title" value="바로입" />
+		<put-attribute name="header" value="/WEB-INF/views/base/header.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/user/cs/cs_sideMenu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/base/footer.jsp" />
+		<put-attribute name="quickMenu" value="" />
+		<put-attribute name="chat" value="" />
+	</definition>
+
+	<definition name="/cs/FAQ_list" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/FAQ_01.jsp" />
+
+	</definition>
+
+	<definition name="/cs/UQA_list" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/UQA_01.jsp" />
+
+	</definition>
+
+	<definition name="/cs/UQA_datail" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/UQA_02.jsp" />
+	</definition>
+	
+	<definition name="/cs/add_UQA_form" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/UQA_03.jsp" />
+
+	</definition>
+	
+	<definition name="/cs/UQA_update_form" extends="CsLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/cs/UQA_04.jsp" />
+
+	</definition>
+
+
+</tiles-definitions>

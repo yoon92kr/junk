@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="/admin/FAQ/FAQ_list" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminFAQ/adminFAQ_01.jsp" />
+	</definition>
+	
+	<definition name="/admin/FAQ/FAQ_detail" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminFAQ/adminFAQ_02.jsp" />
+	</definition>
+	
+	<definition name="/admin/FAQ/add_FAQ_form" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminFAQ/adminFAQ_03.jsp" />
+	</definition>
+	
+	<definition name="/admin/FAQ/update_FAQ_form" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminFAQ/adminFAQ_04.jsp" />
+	</definition>
+</tiles-definitions>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="/notice/notice_list" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/notice/notice_01.jsp" />
+	</definition>
+
+	<definition name="/notice/notice_detail" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/notice/notice_02.jsp" />
+	</definition>
+	
+</tiles-definitions>

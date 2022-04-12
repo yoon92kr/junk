@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 2022.01.18 윤상현 -->
+
+<mapper namespace="mapper.order">
+
+	<!-- 장바구니 수량 조회 쿼리 -->
+	<select id="cartCount" resultType="java.lang.Integer" parameterType="CartVO">
+
+			select cart_count from cart where user_id = #{user_id} and product_id = #{product_id}
+
+	</select>
+	
+	<!-- 주문시 기존 포인트 차감 쿼리 -->
+	<update id="updatePointToOrder" parameterType="OrderVO">
+
+		update user
+		set user_point = user_point - #{order_payment_point}
+		where	 
+		user_id = #{user_id}
+
+	</update>
+
+	<!-- 주문 등록 쿼리 -->
+	<insert id="addOrder" parameterType="OrderVO">
+	
+		insert into orders (
+			order_id,
+			user_id,
+			product_id,
+			order_amount,
+			order_receiver_name,
+			order_receiver_mobile_1,
+			order_receiver_mobile_2,
+			order_receiver_mobile_3,
+			order_receiver_post_code,
+			order_receiver_old_address,
+			order_receiver_new_address,
+			order_receiver_detail_address,
+			order_state,
+			order_payment,
+			order_payment_detail,
+		<if test='order_message != null'>
+			order_message,
+		</if>
+			order_payment_point
+			)
+		
+		values (
+			#{order_id},
+			#{user_id},
+			#{product_id},
+			#{order_amount},
+			#{order_receiver_name},
+			#{order_receiver_mobile_1},
+			#{order_receiver_mobile_2},
+			#{order_receiver_mobile_3},
+			#{order_receiver_post_code},
+			#{order_receiver_old_address},
+			#{order_receiver_new_address},
+			#{order_receiver_detail_address},
+			0,
+			#{order_payment},
+			#{order_receiver_name},
+		<if test='order_message != null'>
+			#{order_message},
+		</if>
+			#{order_payment_point}
+			)
+			
+	
+	</insert>
+	
+		<!-- 비회원 주문 상세 쿼리 -->
+	<select id="guestOrderDetail" resultType="java.util.Map" parameterType="java.util.Map">
+		select 
+			o.*, 
+			p.product_main_title, p.product_price, p.product_discount,
+			i.image_file
+		from orders as o inner join product as p on o.product_id = p.product_id
+			inner join image as i on o.product_id = i.image_match_id
+		where
+			o.order_id like concat(#{order_id}, '_', '%')
+			and o.order_receiver_name = #{user_name}
+			and i.image_category = 'main'
+			and o.user_id like concat('guest', '_', '%')
+
+	</select>
+	
+	<!-- 비회원 주문취소 쿼리 -->
+	<update id="cancelOrder" parameterType="String">
+
+		update orders set 
+			order_state = -1
+		where	 
+			order_id like concat(#{order_id}, '_', '%')
+
+	</update>
+	
+	
+	
+</mapper>

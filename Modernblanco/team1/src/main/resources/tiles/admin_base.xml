@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	
+	<definition name="adminUser_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminUser/adminUser_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminUser_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminUser/adminUser_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_01_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_01_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_01_03" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_01_03.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminCS_02_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminCS/adminCS_02_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminOrder" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminOrder/adminOrder.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminReturn_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReturn/adminReturn_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminReturn_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReturn/adminReturn_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminProduct_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminProduct_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminProduct_03" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminProduct/adminProduct_03.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminNotice_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminNotice_02" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_02.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminNotice_02_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_02_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminNotice_03" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminNotice/adminNotice_03.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminReview_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminReview_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>
+	
+	<definition name="adminReview_01_01" extends="AdminLayout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminReview/adminReview_01_01.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/admin/base/admin_sideMenu.jsp" />
+	</definition>	
+</tiles-definitions>

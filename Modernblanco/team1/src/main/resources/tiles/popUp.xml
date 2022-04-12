@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="popUpLayout" template="/WEB-INF/views/base/popupLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="popUp" extends="popUpLayout">
+		<put-attribute name="title" value="사이트 안내문" />
+		<put-attribute name="body" value="/WEB-INF/views/base/mainPopUp.jsp" />
+	</definition>
+
+</tiles-definitions>

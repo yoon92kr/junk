@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 2022.02.10 윤상현 -->
+
+<mapper namespace="mapper.admin">
+
+	<!-- admin 메인페이지  -->
+	<select id="main" resultType="java.util.Map">
+	
+	select 
+		(select count(order_id) from orders where order_state = 0) as total_order,
+		(select count(order_id) from orders where order_state = 1) as total_delivery,
+		(select count(QA.QAList) from(
+				select count(A.notice_match_no) as QAList
+		 			from notice as A inner join notice as B on A.notice_match_no = B.notice_id
+					where A.notice_category in ('UQA', 'PQA') 
+		             				group by B.notice_id 
+						having QAList = 1
+		              ) as QA) as total_QA ,
+		 (select count(QA.QAList) from(
+				select count(A.notice_match_no) as QAList
+		 			from notice as A inner join notice as B on A.notice_match_no = B.notice_id
+					where A.notice_category = 'comment'  
+		             				group by B.notice_id 
+						having QAList = 1
+		              ) as QA) as total_comment   
+	</select>
+	
+
+</mapper>

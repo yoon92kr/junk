@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 2022.01.10 윤상현 -->
+
+<mapper namespace="mapper.adminNotice">
+
+	<!-- 옵션에 따른 noticeVO 리스트 조회 쿼리 -->
+	<select id="noticeListToOption" resultType="NoticeVO" parameterType="java.util.Map">
+	
+			select * from notice where notice_category = #{notice_category}
+		
+		<if test='search_option != null and search_value != null'>
+			<if test='search_option == "notice_title"'>
+				and notice_title like concat('%', #{search_value}, '%')
+			</if>
+				
+		</if>
+			
+			 order by notice_id * 1
+			
+	</select>
+
+	<!-- notice 삭제 쿼리  -->
+	<delete id="noticeDelete" parameterType="java.lang.String">
+	
+		delete from notice where notice_id = #{notice_id}
+		
+	</delete>
+
+	<!-- notice 단일객체 조회 쿼리 -->
+	<select id="noticeDetail" resultType="NoticeVO" parameterType="java.util.Map">
+	
+		select * from notice where notice_id = #{notice_id}
+		
+	</select>
+
+	<!-- 게시글 등록 쿼리 -->
+	<insert id="addNotice" parameterType="java.util.Map">
+	
+	<selectKey keyProperty="notice_id" resultType="String" order="BEFORE">
+		select concat('notice_', (select nextval('notice')))
+	</selectKey>
+		insert into notice (
+			notice_id,
+			user_id,
+			notice_category,
+			notice_pw,
+			notice_title,
+			notice_body,
+			notice_grade,
+			notice_private,
+			notice_type,
+			order_id,
+			product_id,
+			notice_match_no,
+			notice_parent_no
+			)
+		<if test='notice_category == "Notice" or notice_category == "FAQ"'>
+			values (
+				#{notice_id},
+				#{user_id},
+				#{notice_category},
+				null,
+				#{notice_title},
+				#{notice_body},
+				null,
+				null,
+				null,
+				null,
+				null,
+				#{notice_id},
+				0
+				)
+		</if>
+
+		<if test='notice_category == "UQA"'>
+			<if test='notice_parent_no == 0'>
+				values (
+					#{notice_id},
+					#{user_id},
+					#{notice_category},
+					#{notice_pw},
+					#{notice_title},
+					#{notice_body},
+					null,
+					#{notice_private},
+					#{notice_type},
+					null,
+					null,
+					#{notice_id},
+					#{notice_parent_no}
+					)
+			</if>
+			<if test='notice_parent_no == 1'>
+				values (
+					#{notice_id},
+					#{user_id},
+					#{notice_category},
+					#{notice_pw},
+					#{notice_title},
+					#{notice_body},
+					null,
+					#{notice_private},
+					#{notice_type},
+					null,
+					null,
+					#{base_notice_id},
+					#{notice_parent_no}
+					)
+			</if>
+		</if>
+	</insert>
+
+	<!-- 게시글 수정 쿼리 -->
+	<update id="updateNotice" parameterType="NoticeVO">
+
+		<if test='notice_category == "Notice" or notice_category == "FAQ"'>
+		update notice set  
+			user_id = #{user_id},
+			notice_title = #{notice_title},
+			notice_body = #{notice_body}
+		where notice_id = #{notice_id}
+		</if>
+
+		<if test='notice_category == "UQA"'>
+		
+			<if test='notice_private == 0'>
+				update notice set  
+					notice_private = #{notice_private},
+					notice_pw = #{notice_pw},
+					notice_type = #{notice_type},
+					notice_title = #{notice_title},
+					notice_body = #{notice_body}
+				where notice_id = #{notice_id}			
+			</if>		
+			<if test='notice_private == 1'>
+				update notice set  
+					notice_type = #{notice_type},
+					notice_title = #{notice_title},
+					notice_body = #{notice_body}
+				where notice_id = #{notice_id}
+			</if>
+
+		</if>
+	</update>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+<definition name="/product/product_list/farm" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01_01.jsp" />
+	</definition>
+	
+	<definition name="/product/product_list/marine" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01_02.jsp" />
+	</definition>
+	
+	<definition name="/product/product_list/meat" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_01_03.jsp" />
+	</definition>
+
+	<definition name="/product/productDetail" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_02.jsp" />
+	</definition>
+
+
+	<definition name="/notice/productComment" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_03.jsp" />
+	</definition>
+
+	<definition name="/product/productInfoPage" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_04.jsp" />
+	</definition>
+
+	<definition name="/notice/PQAListPage" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_05.jsp" />
+	</definition>
+
+	<definition name="/notice/add_PQA_form" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/product/product_06.jsp" />
+	</definition>
+	
+</tiles-definitions>

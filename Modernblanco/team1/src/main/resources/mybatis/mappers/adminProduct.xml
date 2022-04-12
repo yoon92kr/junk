@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 2021.12.09 윤상현 -->
+
+<mapper namespace="mapper.adminProduct">
+
+	<!-- 상품 등록 쿼리 -->
+	<insert id="insertProduct" parameterType="ProductVO">
+
+		<![CDATA[
+			insert into product (
+				product_id, 
+				user_id,
+				product_main_title, 
+				product_sub_title,
+				product_body,
+				product_price,
+				product_discount,
+				product_amount,
+				product_main_category,
+				product_sub_category,
+				product_states
+				)
+			values (
+				concat('product_', nextval('product')),
+				#{user_id},
+				#{product_main_title}, 
+				#{product_sub_title},
+				#{product_body}, 
+				#{product_price}, 
+				#{product_discount}, 				
+				#{product_amount}, 
+				#{product_main_category},
+				#{product_sub_category},
+				0
+				)	
+		]]>
+
+	</insert>
+
+	<!-- image와 매칭할 id 조회 쿼리 -->
+	<select id="selectMatchID" resultType="java.lang.String">
+
+		<![CDATA[
+			select count_no from sequences 
+			where sequence_name='product'	 
+		]]>
+
+	</select>
+
+	<!-- 상품 수량 수정 쿼리 -->
+	<update id="updateAmount" parameterType="java.util.Map">
+
+		<![CDATA[
+		update product
+		set product_amount=#{product_amount}
+		where	 
+		product_id=#{product_id}
+		]]>
+
+	</update>
+
+	<!-- 상품 상태 수정 쿼리 -->
+	<update id="updateState" parameterType="java.util.Map">
+
+		<![CDATA[
+		update product
+		set product_states=#{product_states}
+		where	 
+		product_id=#{product_id}
+		]]>
+
+	</update>
+
+	<!-- 상품 삭제 쿼리 -->
+	<delete id="deleteProduct" parameterType="java.lang.String">
+
+		<![CDATA[
+	  delete from product
+	  where product_id=#{product_id}
+		]]>
+
+	</delete>
+
+	<delete id="deleteImage" parameterType="java.lang.String">
+
+		<![CDATA[
+	  delete from image
+	  where image_match_id=#{product_id}
+		]]>
+	</delete>
+
+	<!-- 상품 수정 쿼리 -->
+	<update id="updateProduct" parameterType="ProductVO">
+
+		<![CDATA[
+		update product 	set  
+			user_id = #{user_id},
+			product_main_title = #{product_main_title}, 
+			product_sub_title = #{product_sub_title},
+			product_body = #{product_body},
+			product_price = #{product_price},
+			product_discount = #{product_discount},
+			product_amount = #{product_amount},
+			product_main_category = #{product_main_category},
+			product_sub_category = #{product_sub_category}
+		where product_id = #{product_id}
+		]]>
+
+	</update>
+
+	<select id="selectAllProduct" resultType="ProductVO" parameterType="java.util.Map">
+
+
+		<if test='view_name == "extra_list"'>
+			select * from product where product_states = 0 and 
+		</if>
+
+		<if test='user_rank gt 2 and view_name == "general_list"'>
+			select * from product where 
+		</if>
+
+		<if test='search_option == "productCreDate"'>
+				product_cre_date between #{begin} and date_add(#{end}, interval 1 day) order by product_cre_date desc
+		</if>
+
+		<if test='search_option == "productTitle"'>
+				product_main_title like concat('%', #{search_value}, '%') order by product_cre_date desc
+		</if>
+
+		<if test='search_option == "productStates"'>
+			<if test='search_value == "all"'>
+				<![CDATA[
+				product_states <= 1 order by product_cre_date desc
+						]]>
+			</if>
+			<if test='search_value == "0" or search_value == "1"'>
+				product_states = #{search_value} order by product_cre_date desc
+			</if>
+		</if>
+		
+		<if test='search_option == "productAmount"'>
+				<![CDATA[
+				product_amount <= #{search_value} order by product_amount asc
+						]]>
+		</if>
+
+	</select>
+
+</mapper>

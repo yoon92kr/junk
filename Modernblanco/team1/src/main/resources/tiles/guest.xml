@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="/guest/search_order" extends="popUpLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/guest/guest_01.jsp" />
+	</definition>
+	
+	<definition name="/guest/guest_order_detail" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/guest/guest_02.jsp" />
+	</definition>
+	
+</tiles-definitions>

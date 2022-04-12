@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="MainLayout" template="/WEB-INF/views/base/layout.jsp">
+		<put-attribute name="title" value="바로입" />
+		<put-attribute name="header" value="/WEB-INF/views/base/header.jsp" />
+		<put-attribute name="side" value="" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/base/footer.jsp" />
+		<put-attribute name="quickMenu" value="/WEB-INF/views/base/quickMenu.jsp" />
+		<put-attribute name="chat" value="/WEB-INF/views/base/chat.jsp" />
+	</definition>
+
+	<definition name="main" extends="MainLayout">
+		<put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+	</definition>
+
+</tiles-definitions>
