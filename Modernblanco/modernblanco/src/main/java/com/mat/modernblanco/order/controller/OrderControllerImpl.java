@@ -3,9 +3,6 @@
 package com.mat.modernblanco.order.controller;
 
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mat.modernblanco.cart.vo.CartVO;
+import com.mat.modernblanco.order.service.OrderService;
+import com.mat.modernblanco.order.vo.OrderVO;
+import com.mat.modernblanco.product.service.ProductService;
+import com.mat.modernblanco.user.service.UserService;
+import com.mat.modernblanco.user.vo.UserVO;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +31,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.mat.modernblanco.cart.vo.CartVO;
-import com.mat.modernblanco.order.service.OrderService;
-import com.mat.modernblanco.order.vo.OrderVO;
-import com.mat.modernblanco.product.service.ProductService;
-import com.mat.modernblanco.user.service.UserService;
-import com.mat.modernblanco.user.vo.UserVO;
 
 @Controller("orderController")
 @RequestMapping(value = "/order")
@@ -140,7 +139,7 @@ public class OrderControllerImpl implements OrderController {
 	}
 	
 	// ���� �Ϸ� ��Ʈ�ѷ�
-	@Override
+/* 	@Override
 	@RequestMapping(value = "/order_complete.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView orderComplete(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -205,7 +204,7 @@ public class OrderControllerImpl implements OrderController {
 		}
 		return mav;
 		
-	}
+	} */
 
 	@Override
 	@ResponseBody
