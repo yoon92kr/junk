@@ -1,2 +1,0 @@
-INDEX VERSION 1.131+E:\스프링 게시판 구현\board\.metadata\.plugins\org.eclipse.jdt.core
-638750187.index
