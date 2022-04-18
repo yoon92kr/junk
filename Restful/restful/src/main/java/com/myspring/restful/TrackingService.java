@@ -43,6 +43,7 @@ public class TrackingService {
 		// 외부 api 사용할지 고민중.
 		
 		result = commonService.callAPI(url);
+		
 		return result;
 		
 	}

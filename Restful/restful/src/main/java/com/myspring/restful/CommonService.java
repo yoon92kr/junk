@@ -59,6 +59,8 @@ public class CommonService {
 			}
 				
 			result = getMapFromJsonObject(new JSONObject(sb.toString()));
+			
+			System.out.println(result);
 						
 			
 		} catch (Exception e) {
