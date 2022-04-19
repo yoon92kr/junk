@@ -1,2 +1,2 @@
 from app import app
-app.run(debug=True, port=80)    # 서버 실행
+app.run(host="0.0.0.0", debug=True, port=80)    # 서버 실행
