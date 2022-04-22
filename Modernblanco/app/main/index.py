@@ -9,5 +9,8 @@ main = Blueprint('main', __name__, url_prefix='/')
 
 # 큰 의미는 없지만, 나중에 url_for에서 사용될 함수 이름을 유심히 봐두시기 바랍니다.
 def index():
+
+    testData = 'testData array'
+
     #  # /main/index.html은 사실 /project_name/app/templates/main/index.html을 가리킵니다.
-    return render_template('/main/index.html')
+    return render_template('/main/index.html', testKey = testData)
