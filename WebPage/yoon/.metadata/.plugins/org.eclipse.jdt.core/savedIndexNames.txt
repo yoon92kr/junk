@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+D:\Git\junk\WebPage\yoon\.metadata\.plugins\org.eclipse.jdt.core
-1859004639.index
-638750187.index
