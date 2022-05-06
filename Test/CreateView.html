@@ -284,7 +284,8 @@
     function touchScreen() {
       var isMouseDown = false;
       /* 마우스를 누른 상태 */
-      $("#table td").mousedown(function () {
+      $("#table td")
+        .mousedown(function () {
           isMouseDown = true;
           $(this).toggleClass("highlighted");
           return false;
@@ -297,7 +298,7 @@
         .bind("selectstart", function () {
           return false;
         });
-        /* 마우스를 뗀 상태 */
+      /* 마우스를 뗀 상태 */
       $(document).mouseup(function () {
         isMouseDown = false;
       });
@@ -518,16 +519,10 @@
   <html>
     <div
       id="inputBox"
-      style="
-        margin-left: 20px;
-        margin-top: 20px;
-        border: 1px solid #000;
-        width: 300px;
-        padding: 10px;
-      "
+      style="margin-left: 20px; margin-top: 20px; border: 1px solid #000; width: 300px; padding: 10px;"
     >
-      동 이름 &nbsp;&nbsp;&nbsp;&nbsp;: <input id="dong" type="text" /> <br />
       <!-- 이미 있는 동인지 확인할것 -->
+      동 이름 &nbsp;&nbsp;&nbsp;&nbsp;: <input id="dong" type="text" /> <br />
       최고 층 수 : <input id="floor" type="text" /> <br />
       지하 층 수 : <input id="basement" type="text" /> <br />
       최대 호 수 : <input id="ho" type="text" /> <br />
