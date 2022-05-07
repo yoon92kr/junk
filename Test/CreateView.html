@@ -1,196 +1,184 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>HTML DOM - Drag and drop table column</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      .apt-top {
+        width: 110px;
+        height: 50px;
+        border-top: 2px solid #444444;
+        border-bottom: 2px solid #444444;
+        border-left: 2px solid #444444;
+        border-right: 2px solid #444444;
+      }
+
+      .apt-top-index {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+      }
+
+      .apt-top-line-ho {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        background-color: #08797d6b;
+      }
+
+      .apt-top-line-floor {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        background-color: #8f8f8f;
+      }
+
+      .apt-top-floor {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        background-color: #d5d9db;
+      }
+
+      .apt-top-floor-dark {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        background-color: #b3b3b3;
+      }
+
+      .apt-make {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        background-color: #b1e0e5;
+      }
+
+      .apt-nomake {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        background-color: #f1f1f1;
+      }
+
+      .apt-no {
+        width: 110px;
+        height: 40px;
+        border-top: 0px;
+        border-bottom: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        background-color: #ffffff;
+      }
+
+      .apt-do-work {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        background-color: #397399;
+      }
+
+      .apt-do-danger-work {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        background-color: #a72121;
+      }
+
+      .apt-basement-park {
+        width: 110px;
+        height: 40px;
+        border-top: 1px solid #444444;
+        border-bottom: 1px solid #444444;
+        background-color: #e7dbb8;
+      }
+
+      table td.highlighted {
+        background-color: rgb(252, 252, 252);
+      }
+      .APTtable {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+      .APTtable th,
+      .APTtable td {
+        border: 1px solid #ccc;
+      }
+      .APTtable th,
+      .APTtable td {
+        padding: 0.5rem;
+      }
+      .draggable {
+        cursor: move;
+        user-select: none;
+      }
+      .placeholder {
+        background-color: #edf2f7;
+        border: 2px dashed #cbd5e0;
+      }
+      .clone-list {
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        display: flex;
+      }
+      .clone-table {
+        border-collapse: collapse;
+        border: none;
+      }
+      .clone-table th,
+      .clone-table td {
+        border: 1px solid #ccc;
+        border-left: none;
+        border-top: none;
+        padding: 0.5rem;
+      }
+      .dragging {
+        background: #fff;
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+       z-index: 999;
+      }
+    </style>
   </head>
-  <style type="text/css">
-    .apt-table-border {
-      border: 5px solid #444444;
-    }
 
-    .apt-table table:nth-child(odd) {
-      width: auto;
-      border-top: 1px solid #444444;
-      border-collapse: collapse;
-    }
-
-    .apt-top {
-      width: 110px;
-      height: 50px;
-      border-top: 2px solid #444444;
-      border-bottom: 2px solid #444444;
-      border-left: 2px solid #444444;
-      border-right: 2px solid #444444;
-    }
-
-    .apt-top-index {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-    }
-
-    .apt-top-line-ho {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-      background-color: #08797d6b;
-    }
-
-    .apt-top-line-floor {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-      background-color: #8f8f8f;
-    }
-
-    .apt-top-floor {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-      background-color: #d5d9db;
-    }
-
-    .apt-top-floor-dark {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-      background-color: #b3b3b3;
-    }
-
-    .apt-make {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-      background-color: #b1e0e5;
-    }
-
-    .apt-nomake {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-      background-color: #f1f1f1;
-    }
-
-    .apt-no {
-      width: 110px;
-      height: 40px;
-      border-top: 0px;
-      border-bottom: 0px;
-      border-left: 0px;
-      border-right: 0px;
-      background-color: #ffffff;
-    }
-
-    .apt-do-work {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-      background-color: #397399;
-    }
-
-    .apt-do-danger-work {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      border-left: 1px solid #444444;
-      border-right: 1px solid #444444;
-      background-color: #a72121;
-    }
-
-    .apt-basement-park {
-      width: 110px;
-      height: 40px;
-      border-top: 1px solid #444444;
-      border-bottom: 1px solid #444444;
-      background-color: #e7dbb8;
-    }
-
-    table td.highlighted {
-      background-color: #fff;
-    }
-
-    .table {
-      border: 1px solid #ccc;
-      border-collapse: collapse;
-    }
-    .table th,
-    .table td {
-      border: 1px solid #ccc;
-    }
-    .table th,
-    .table td {
-      padding: 0.5rem;
-    }
-    .draggable {
-      cursor: move;
-      user-select: none;
-    }
-    .placeholder {
-      background-color: #edf2f7;
-      border: 2px dashed #cbd5e0;
-    }
-    .clone-list {
-      border-left: 1px solid #ccc;
-      border-top: 1px solid #ccc;
-      display: flex;
-    }
-    .clone-table {
-      border-collapse: collapse;
-      border: none;
-    }
-    .clone-table th,
-    .clone-table td {
-      border: 1px solid #ccc;
-      border-left: none;
-      border-top: none;
-      padding: 0.5rem;
-    }
-    .dragging {
-      background: #fff;
-      border-left: 1px solid #ccc;
-      border-top: 1px solid #ccc;
-      z-index: 999;
-    }
-  </style>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   ></script>
-  <script type="text/javascript"></script>
   <script>
     function initAPT() {
       var MAX_E = $("#stair").val();
@@ -199,7 +187,7 @@
       var MAX_B = $("#basement").val();
       var dong = $("#dong").val();
       $("#inputBox").remove();
-      var appendArea = $("#initArea");
+      var appendArea = $("#APTtable");
       var floorFlag =
         MAX_F; /* 현재 그리고 있는 층 (한 층을 다 그린뒤 1씩 감소, 0보다 작아질경우 -1 후 절대값 변환) */
       var floor =
@@ -208,15 +196,11 @@
       var exitFlag = 0; /* 각 층별 계단 Cell을 그릴때 기준점이 될 변수 ( 한칸을 그릴때마다 1씩 증가 / 최대값(MAX_E) 도달시 0으로 초기화 ) */
       var hoFlag = 0; /* 각 층별 호 Cell을 그릴때 기준점이 될 변수, 0일경우 층수를 그린다 ( 한칸을 그릴때마다 1씩 증가 / 최대값(MAX_F) 도달시 0으로 초기화 ) */
 
-      var innerData = "<div>" + dong + "동</div><div>";
+      var innerData =
+        '<caption style="caption-side: top; background-color: #505050; color:#fff;"  class="text-center">' + dong + "동</caption>";
 
       innerData +=
-        '<table id="table" class="apt-table" style="display:inline">';
-      innerData +=
-        '<thead class="apt-table-border" style="text-align: center;">';
-      innerData += '<tr style="text-align: center">';
-
-      innerData += '<tr><th class="apt-top-index" data-type="number">구분</th>';
+        '<thead><tr><th class="apt-top-index" data-type="number">구분</th>';
 
       /* 해당 동의 호 인덱스 그리기 */
       for (var i = 1; i <= MAX_NO; i++) {
@@ -229,7 +213,7 @@
 
       innerData += "</tr>";
       innerData += "</thead>";
-      innerData += '<tbody id="bodyTable">';
+      innerData += "<tbody>";
       for (var i = 0; i < Number(MAX_F) + Number(MAX_B); i++) {
         innerData += '<tr><td class="apt-top-floor">' + floor + "</td>";
 
@@ -264,48 +248,45 @@
       }
 
       innerData += "</tbody>";
-      innerData += "</table>";
-      innerData +=
-        '<br><input type="button" value="저장" onclick="complte()" />';
+
+      var buttonArea = $("#buttonArea");
 
       appendArea.append(innerData);
-      $(document).ready(doReady);
+      buttonArea.append(
+        '<br><input type="button" value="저장" onclick="complte()" />'
+      );
+      document.addEventListener("DOMContentLoaded", initFunction());
     }
-
-    function complte() {
-      alert();
-    }
-
-    function doReady() {
-      touchScreen();
-      moveColumn();
-    }
-
-    function touchScreen() {
+    function initFunction() {
       var isMouseDown = false;
-      /* 마우스를 누른 상태 */
-      $("#table td")
+      /* 마우스로 element를 클릭했을때 호출 */
+      $("#APTtable td")
         .mousedown(function () {
-          isMouseDown = true;
-          $(this).toggleClass("highlighted");
-          return false;
-        })
-        .mouseover(function () {
-          if (isMouseDown) {
+          if ($(this)[0].className.includes("apt-make")) {
+            isMouseDown = true;
             $(this).toggleClass("highlighted");
+            return false;
+          }
+        })
+        /* 마우스를 클릭한 상태로 다른 element로 옮겼을때 호출 */
+        .mouseover(function () {
+          if ($(this)[0].className.includes("apt-make")) {
+            if (isMouseDown) {
+              $(this).toggleClass("highlighted");
+            }
           }
         })
         .bind("selectstart", function () {
-          return false;
+          if ($(this)[0].className.includes("apt-make")) {
+            return false;
+          }
         });
-      /* 마우스를 뗀 상태 */
+      /* 마우스를 뗏을때 호출 */
       $(document).mouseup(function () {
         isMouseDown = false;
       });
-    }
 
-    function moveColumn() {
-      const table = document.getElementById("table");
+      const table = document.getElementById("APTtable");
 
       let draggingEle;
       let draggingColumnIndex;
@@ -350,7 +331,7 @@
         table.parentNode.insertBefore(list, table);
 
         // Hide the original table
-        table.style.visibility = "hidden";
+        //  table.style.visibility = 'hidden';
 
         // Get all cells
         const originalCells = [].slice.call(table.querySelectorAll("tbody td"));
@@ -366,7 +347,7 @@
           const item = document.createElement("div");
           item.classList.add("draggable");
 
-          const newTable = document.createElement("table");
+          const newTable = document.createElement("APTtable");
           newTable.setAttribute("class", "clone-table");
           newTable.style.width = `${width}px`;
 
@@ -514,21 +495,45 @@
         headerCell.addEventListener("mousedown", mouseDownHandler);
       });
     }
-  </script>
 
-  <html>
+    function complte() {
+      var dataArrayToSend = [];
+
+      var dataArrayToSend1 = [];
+
+      $("#APTtable tr").each(function () {
+        var len = $(this).find("td").length;
+
+        for (var i = 0; i < len; i++) {
+          dataArrayToSend.push($(this).find("td").eq(i).text());
+        }
+
+        dataArrayToSend1.push(dataArrayToSend);
+      });
+
+      console.log(dataArrayToSend1);
+    }
+  </script>
+  <body>
     <div
       id="inputBox"
-      style="margin-left: 20px; margin-top: 20px; border: 1px solid #000; width: 300px; padding: 10px;"
+      style="
+        margin-left: 20px;
+        margin-top: 20px;
+        border: 1px solid #000;
+        width: 300px;
+        padding: 10px;
+      "
     >
+      동 이름 &nbsp;&nbsp;: <input id="dong" type="text" /> <br />
       <!-- 이미 있는 동인지 확인할것 -->
-      동 이름 &nbsp;&nbsp;&nbsp;&nbsp;: <input id="dong" type="text" /> <br />
-      최고 층 수 : <input id="floor" type="text" /> <br />
-      지하 층 수 : <input id="basement" type="text" /> <br />
-      최대 호 수 : <input id="ho" type="text" /> <br />
-      계단 개수 &nbsp;: <input id="stair" type="text" /> <br />
+      지상층 수 : <input id="floor" type="text" /> <br />
+      지하층 수 : <input id="basement" type="text" /> <br />
+      호 개수 : &nbsp;&nbsp;<input id="ho" type="text" /> <br />
+      계단 개수 : <input id="stair" type="text" /> <br />
       <input type="button" value="만들기" onclick="initAPT()" />
     </div>
-    <table id="initArea"></table>
-  </html>
+    <table id="APTtable" class="APTtable"></table>
+    <div id="buttonArea"></div>
+  </body>
 </html>
