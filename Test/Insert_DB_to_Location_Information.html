@@ -195,12 +195,12 @@
       var MAX_NO = $("#ho").val();
       var MAX_B = $("#basement").val();
       var dong = $("#dong").val();
-      $("#inputBox").remove();
       var appendArea = $("#APTtable");
       var floorFlag = MAX_F; /* 현재 그리고 있는 층 (한 층을 다 그린뒤 1씩 감소, 0보다 작아질경우 -1 후 절대값 변환) */
       var floor = floorFlag + "F"; /* 현재 그리고 있는 층 (지상/지하 표기), 시작은 지상층부터라는 가정 (이후 지하층으로만 구성된 현장이있을경우 Foreach문에 if문으로 변경할 것) */
       var titleArea = $("#titleArea");
 
+      $("#inputBox").remove();
       titleArea.append(dong + "동");
       /* 테이블 베이스 그리기 */
       
@@ -304,215 +304,216 @@
         isMouseDown = false;
       });
 
-      /******* Column 이동 이벤트 ********/
+      /******* Column 이동 이벤트 참조 코드 ********/
       const table = document.getElementById('APTtable');
 
-let draggingEle;
-let draggingColumnIndex;
-let placeholder;
-let list;
-let isDraggingStarted = false;
+      let draggingEle;
+      let draggingColumnIndex;
+      let placeholder;
+      let list;
+      let isDraggingStarted = false;
 
-// The current position of mouse relative to the dragging element
-let x = 0;
-let y = 0;
+      // The current position of mouse relative to the dragging element
+      let x = 0;
+      let y = 0;
 
-// Swap two nodes
-const swap = function (nodeA, nodeB) {
-    const parentA = nodeA.parentNode;
-    const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
+      // Swap two nodes
+      const swap = function (nodeA, nodeB) {
+          const parentA = nodeA.parentNode;
+          const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
 
-    // Move `nodeA` to before the `nodeB`
-    nodeB.parentNode.insertBefore(nodeA, nodeB);
+          // Move `nodeA` to before the `nodeB`
+          nodeB.parentNode.insertBefore(nodeA, nodeB);
 
-    // Move `nodeB` to before the sibling of `nodeA`
-    parentA.insertBefore(nodeB, siblingA);
-};
+          // Move `nodeB` to before the sibling of `nodeA`
+          parentA.insertBefore(nodeB, siblingA);
+      };
 
-// Check if `nodeA` is on the left of `nodeB`
-const isOnLeft = function (nodeA, nodeB) {
-    // Get the bounding rectangle of nodes
-    const rectA = nodeA.getBoundingClientRect();
-    const rectB = nodeB.getBoundingClientRect();
+      // Check if `nodeA` is on the left of `nodeB`
+      const isOnLeft = function (nodeA, nodeB) {
+          // Get the bounding rectangle of nodes
+          const rectA = nodeA.getBoundingClientRect();
+          const rectB = nodeB.getBoundingClientRect();
 
-    return rectA.left + rectA.width / 2 < rectB.left + rectB.width / 2;
-};
+          return rectA.left + rectA.width / 2 < rectB.left + rectB.width / 2;
+      };
 
-const cloneTable = function () {
-    const rect = table.getBoundingClientRect();
+      const cloneTable = function () {
+          const rect = table.getBoundingClientRect();
 
-    list = document.createElement('div');
-    list.classList.add('clone-list');
-    list.style.position = 'absolute';
-    list.style.left = `${rect.left}px`;
-    list.style.top = `${rect.top}px`;
-    table.parentNode.insertBefore(list, table);
+          list = document.createElement('div');
+          list.classList.add('clone-list');
+          list.style.position = 'absolute';
+          list.style.left = `${rect.left}px`;
+          list.style.top = `${rect.top}px`;
+          table.parentNode.insertBefore(list, table);
 
-    // Hide the original table
-    table.style.visibility = 'hidden';
+          // Hide the original table
+          table.style.visibility = 'hidden';
 
-    // Get all cells
-    const originalCells = [].slice.call(table.querySelectorAll('tbody td'));
+          // Get all cells
+          const originalCells = [].slice.call(table.querySelectorAll('tbody td'));
 
-    const originalHeaderCells = [].slice.call(table.querySelectorAll('th'));
-    const numColumns = originalHeaderCells.length;
+          const originalHeaderCells = [].slice.call(table.querySelectorAll('th'));
+          const numColumns = originalHeaderCells.length;
 
-    // Loop through the header cells
-    originalHeaderCells.forEach(function (headerCell, headerIndex) {
-        const width = parseInt(window.getComputedStyle(headerCell).outerWidth);
+          // Loop through the header cells
+          originalHeaderCells.forEach(function (headerCell, headerIndex) {
+            /* 기존 코드 커스텀 - 드래깅시 테이블 규격 변동되는점 수정 (width -> outerWidth) */
+              const width = parseInt(window.getComputedStyle(headerCell).outerWidth);
 
-        // Create a new table from given row
-        const item = document.createElement('div');
-        item.classList.add('draggable');
+              // Create a new table from given row
+              const item = document.createElement('div');
+              item.classList.add('draggable');
 
-        const newTable = document.createElement('table');
-        newTable.setAttribute('class', 'clone-table text-center');
-        newTable.style.width = `${width}px`;
+              const newTable = document.createElement('table');
+              newTable.setAttribute('class', 'clone-table text-center');
+              newTable.style.width = `${width}px`;
 
-        // Header
-        const th = headerCell.cloneNode(true);
-        let newRow = document.createElement('tr');
-        newRow.appendChild(th);
-        newTable.appendChild(newRow);
+              // Header
+              const th = headerCell.cloneNode(true);
+              let newRow = document.createElement('tr');
+              newRow.appendChild(th);
+              newTable.appendChild(newRow);
 
-        const cells = originalCells.filter(function (c, idx) {
-            return (idx - headerIndex) % numColumns === 0;
-        });
-        cells.forEach(function (cell) {
-            const newCell = cell.cloneNode(true);
-            newCell.style.width = `${width}px`;
-            newRow = document.createElement('tr');
-            newRow.appendChild(newCell);
-            newTable.appendChild(newRow);
-        });
+              const cells = originalCells.filter(function (c, idx) {
+                  return (idx - headerIndex) % numColumns === 0;
+              });
+              cells.forEach(function (cell) {
+                  const newCell = cell.cloneNode(true);
+                  newCell.style.width = `${width}px`;
+                  newRow = document.createElement('tr');
+                  newRow.appendChild(newCell);
+                  newTable.appendChild(newRow);
+              });
 
-        item.appendChild(newTable);
-        list.appendChild(item);
-    });
-};
+              item.appendChild(newTable);
+              list.appendChild(item);
+          });
+      };
 
-const mouseDownHandler = function (e) {
-    draggingColumnIndex = [].slice.call(table.querySelectorAll('th')).indexOf(e.target);
+      const mouseDownHandler = function (e) {
+          draggingColumnIndex = [].slice.call(table.querySelectorAll('th')).indexOf(e.target);
 
-    // Determine the mouse position
-    x = e.clientX - e.target.offsetLeft;
-    y = e.clientY - e.target.offsetTop;
+          // Determine the mouse position
+          x = e.clientX - e.target.offsetLeft;
+          y = e.clientY - e.target.offsetTop;
 
-    // Attach the listeners to `document`
-    document.addEventListener('mousemove', mouseMoveHandler);
-    document.addEventListener('mouseup', mouseUpHandler);
-};
+          // Attach the listeners to `document`
+          document.addEventListener('mousemove', mouseMoveHandler);
+          document.addEventListener('mouseup', mouseUpHandler);
+      };
 
-const mouseMoveHandler = function (e) {
-    if (!isDraggingStarted) {
-        isDraggingStarted = true;
+      const mouseMoveHandler = function (e) {
+          if (!isDraggingStarted) {
+              isDraggingStarted = true;
 
-        cloneTable();
+              cloneTable();
 
-        draggingEle = [].slice.call(list.children)[draggingColumnIndex];
-        draggingEle.classList.add('dragging');
+              draggingEle = [].slice.call(list.children)[draggingColumnIndex];
+              draggingEle.classList.add('dragging');
 
-        // Let the placeholder take the height of dragging element
-        // So the next element won't move to the left or right
-        // to fill the dragging element space
-        placeholder = document.createElement('div');
-        placeholder.classList.add('placeholder');
-        draggingEle.parentNode.insertBefore(placeholder, draggingEle.nextSibling);
-        placeholder.style.width = `${draggingEle.offsetWidth}px`;
-    }
+              // Let the placeholder take the height of dragging element
+              // So the next element won't move to the left or right
+              // to fill the dragging element space
+              placeholder = document.createElement('div');
+              placeholder.classList.add('placeholder');
+              draggingEle.parentNode.insertBefore(placeholder, draggingEle.nextSibling);
+              placeholder.style.width = `${draggingEle.offsetWidth}px`;
+          }
 
-    // Set position for dragging element
-    draggingEle.style.position = 'absolute';
-    draggingEle.style.top = `${draggingEle.offsetTop + e.clientY - y}px`;
-    draggingEle.style.left = `${draggingEle.offsetLeft + e.clientX - x}px`;
+          // Set position for dragging element
+          draggingEle.style.position = 'absolute';
+          draggingEle.style.top = `${draggingEle.offsetTop + e.clientY - y}px`;
+          draggingEle.style.left = `${draggingEle.offsetLeft + e.clientX - x}px`;
 
-    // Reassign the position of mouse
-    x = e.clientX;
-    y = e.clientY;
+          // Reassign the position of mouse
+          x = e.clientX;
+          y = e.clientY;
 
-    // The current order
-    // prevEle
-    // draggingEle
-    // placeholder
-    // nextEle
-    const prevEle = draggingEle.previousElementSibling;
-    const nextEle = placeholder.nextElementSibling;
+          // The current order
+          // prevEle
+          // draggingEle
+          // placeholder
+          // nextEle
+          const prevEle = draggingEle.previousElementSibling;
+          const nextEle = placeholder.nextElementSibling;
 
-    // // The dragging element is above the previous element
-    // // User moves the dragging element to the left
-    if (prevEle && isOnLeft(draggingEle, prevEle)) {
-        // The current order    -> The new order
-        // prevEle              -> placeholder
-        // draggingEle          -> draggingEle
-        // placeholder          -> prevEle
-        swap(placeholder, draggingEle);
-        swap(placeholder, prevEle);
-        return;
-    }
+          // // The dragging element is above the previous element
+          // // User moves the dragging element to the left
+          if (prevEle && isOnLeft(draggingEle, prevEle)) {
+              // The current order    -> The new order
+              // prevEle              -> placeholder
+              // draggingEle          -> draggingEle
+              // placeholder          -> prevEle
+              swap(placeholder, draggingEle);
+              swap(placeholder, prevEle);
+              return;
+          }
 
-    // The dragging element is below the next element
-    // User moves the dragging element to the bottom
-    if (nextEle && isOnLeft(nextEle, draggingEle)) {
-        // The current order    -> The new order
-        // draggingEle          -> nextEle
-        // placeholder          -> placeholder
-        // nextEle              -> draggingEle
-        swap(nextEle, placeholder);
-        swap(nextEle, draggingEle);
-    }
-};
+          // The dragging element is below the next element
+          // User moves the dragging element to the bottom
+          if (nextEle && isOnLeft(nextEle, draggingEle)) {
+              // The current order    -> The new order
+              // draggingEle          -> nextEle
+              // placeholder          -> placeholder
+              // nextEle              -> draggingEle
+              swap(nextEle, placeholder);
+              swap(nextEle, draggingEle);
+          }
+      };
 
-const mouseUpHandler = function () {
+      const mouseUpHandler = function () {
 
-    // // Remove the placeholder
-    placeholder && placeholder.parentNode.removeChild(placeholder);
+          // // Remove the placeholder
+          placeholder && placeholder.parentNode.removeChild(placeholder);
 
-    draggingEle.classList.remove('dragging');
-    draggingEle.style.removeProperty('top');
-    draggingEle.style.removeProperty('left');
-    draggingEle.style.removeProperty('position');
+          draggingEle.classList.remove('dragging');
+          draggingEle.style.removeProperty('top');
+          draggingEle.style.removeProperty('left');
+          draggingEle.style.removeProperty('position');
 
-    // Get the end index
-    const endColumnIndex = [].slice.call(list.children).indexOf(draggingEle);
+          // Get the end index
+          const endColumnIndex = [].slice.call(list.children).indexOf(draggingEle);
 
-    isDraggingStarted = false;
+          isDraggingStarted = false;
 
-    // Remove the `list` element
-    list.parentNode.removeChild(list);
+          // Remove the `list` element
+          list.parentNode.removeChild(list);
 
-    // Move the dragged column to `endColumnIndex`
-    table.querySelectorAll('tr').forEach(function (row) {
-        const cells = [].slice.call(row.querySelectorAll('th, td'));
-        draggingColumnIndex > endColumnIndex
-            ? cells[endColumnIndex].parentNode.insertBefore(
-                  cells[draggingColumnIndex],
-                  cells[endColumnIndex]
-              )
-            : cells[endColumnIndex].parentNode.insertBefore(
-                  cells[draggingColumnIndex],
-                  cells[endColumnIndex].nextSibling
-              );
-    });
+          // Move the dragged column to `endColumnIndex`
+          table.querySelectorAll('tr').forEach(function (row) {
+              const cells = [].slice.call(row.querySelectorAll('th, td'));
+              draggingColumnIndex > endColumnIndex
+                  ? cells[endColumnIndex].parentNode.insertBefore(
+                        cells[draggingColumnIndex],
+                        cells[endColumnIndex]
+                    )
+                  : cells[endColumnIndex].parentNode.insertBefore(
+                        cells[draggingColumnIndex],
+                        cells[endColumnIndex].nextSibling
+                    );
+          });
 
-    // Bring back the table
-    table.style.removeProperty('visibility');
+          // Bring back the table
+          table.style.removeProperty('visibility');
 
-    // Remove the handlers of `mousemove` and `mouseup`
-    document.removeEventListener('mousemove', mouseMoveHandler);
-    document.removeEventListener('mouseup', mouseUpHandler);
-  
-};
+          // Remove the handlers of `mousemove` and `mouseup`
+          document.removeEventListener('mousemove', mouseMoveHandler);
+          document.removeEventListener('mouseup', mouseUpHandler);
+        
+      };
 
-table.querySelectorAll('th').forEach(function (headerCell) {
+      table.querySelectorAll('th').forEach(function (headerCell) {
 
-  /* 계단의 위치는 변경될 수 있으나, 호의 위치는 변경될 수 없기에 계단에만 움직임 허용 */
-  if(headerCell.className.indexOf('apt-top-line-floor') != -1) {
-    headerCell.classList.add('draggable');
-    headerCell.addEventListener('mousedown', mouseDownHandler);
-  }
-   
+        /* 기존코드 커스텀 - 테이블 인덱스의 '계단'의 위치는 변경될 수 있으나, '구분' 및 '호'의 위치는 변경될 수 없기에 계단에만 움직임 허용 if조건문 추가 */
+        if(headerCell.className.indexOf('apt-top-line-floor') != -1) {
+          headerCell.classList.add('draggable');
+          headerCell.addEventListener('mousedown', mouseDownHandler);
+        }
+        
 
-});
+      });
     }
 
     /* 데이터 정형화 함수 */
@@ -552,8 +553,8 @@ table.querySelectorAll('th').forEach(function (headerCell) {
         LOCATION_1ST: $("#titleArea").text().split("동")[0],
         LOCATION_1ST_NAME: $("#titleArea").text(),
         DATA: dataArrayToSend1,
-        USER_GROUP_CODE: "AROM",
-        CONSTRUCTION_CODE: "AROM_DUNCAN_0001",
+        USER_GROUP_CODE: "AROM",    // session에 있는 값 set 예정
+        CONSTRUCTION_CODE: "AROM_DUNCAN_0001"   // session에 있는 값 set 예정
       };
 
       console.log(data);
