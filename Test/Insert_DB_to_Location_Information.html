@@ -25,6 +25,7 @@
         border-bottom: 1px solid #444444;
         border-left: 1px solid #444444;
         border-right: 1px solid #444444;
+        background-color: #8f8f8f;
       }
 
       .apt-top-line-ho {
@@ -567,7 +568,7 @@
       <div style="display: inline-block; width: 100px;">지상층 수 : </div><input id="floor" type="text" style="margin-top: 10px; margin-bottom: 10px;" /> <br />
       <div style="display: inline-block; width: 100px;">지하층 수 : </div><input id="basement" type="text" style="margin-top: 10px; margin-bottom: 10px;" /> <br />
       <div style="display: inline-block; width: 100px;">호 개수 : </div><input id="ho" type="text" style="margin-top: 10px; margin-bottom: 10px;"/> <br />
-      <div style="display: inline-block; width: 100px;">계단 개수 : </div><input id="stair" type="text" style="margin-top: 10px; margin-bottom: 10px;" /> <br />
+      <div style="display: inline-block; width: 100px;">계단 개수 : </div><input id="stair" type="text" onkeypress="if(event.keyCode == 13){initAPT()}" style="margin-top: 10px; margin-bottom: 10px;" /> <br />
       <input type="button" value="만들기" onclick="initAPT()" style="width: 200px; margin-left:60px; margin-top: 30px; margin-bottom: 10px;" />
     </div>
     <div class="text-center" id="titleArea"></div>
