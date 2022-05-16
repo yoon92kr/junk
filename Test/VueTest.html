@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="todo-list-app">
+      <ol>
+        <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+      </ol>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const TodoList = {
+        data() {
+          return {
+            groceryList: [
+              { id: 0, text: "야채" },
+              { id: 1, text: "치즈" },
+              { id: 2, text: "사람이 먹을수 있는거라면 뭐든지" },
+            ],
+          };
+        },
+      };
+
+      const app = Vue.createApp(TodoList);
+
+      app.component("todo-item", {
+        props: ["todo"],
+        template: `<li>{{ todo.text }}</li>`,
+      });
+
+      app.mount("#todo-list-app");
+    </script>
+  </body>
+</html>
