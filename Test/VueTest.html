@@ -3,23 +3,81 @@
     <title>Vue Template - Watch</title>
   </head>
   <body>
-    <ul id="v-for-object" class="demo">
-      <li v-for="item in myObject" :key="item.id">{{item}} :::::::::::</li>
-    </ul>
+    <div id="app">
+      <input :type="type1" />
+      <!-- v-bind 생략 가능 -->
+      <input v-bind:type="type2" />
+      <a :href="url">url</a>
+      <p v-bind:class="class1">v-bind 클래스지정</p>
+      <p v-bind:class="[class1, class2]">다중 클래스 지정</p>
+      <p v-bind:class="{'test-class1': isON}">클래스 ON/OFF</p>
+      <!-- isON의 값이 true/false-->
+    </div>
+
+    <h2>입력한 문자열을 표시하는 예제</h2>
+    <div id="app2">
+      <!--v-model을 사용해 프로퍼티에 값을 input값으로 저장가능-->
+      <input v-model="input_model" placeholder="이름" />
+      <p>input model : {{input_model}}</p>
+
+      <!--lazy는 input의 포커스를 다른곳으로 이동할 때 프로퍼티에 저장하는 기능-->
+      <input v-model.lazy="input_model2" />
+      <p>input lazy model : {{input_model2}}</p>
+
+      <!--textarea에서도 v-model 사용가능-->
+      <textarea v-model="textarea_model"></textarea>
+      <p>textarea model : {{textarea_model}}</p>
+
+      <!--checkbox에서 사용 예제 저장된 프로퍼티를 v-bind를 통해 로직 실행가능-->
+      <input type="checkbox" v-model="checkbox_model" value="awd" />
+      <button v-bind:disabled="checkbox_model === false">disabledd</button>
+      <p>checkbox model : {{checkbox_model}}</p>
+
+      <!--프로퍼티를 배열로 선언하면 value값을 저장-->
+      <input type="checkbox" v-model="checkbox_model2" value="test1" />
+      <input type="checkbox" v-model="checkbox_model2" value="test2" />
+      <p>checkbox model : {{checkbox_model2}}</p>
+
+      <!--라디오 프로퍼티 저장-->
+      <input type="radio" v-model="radio_model" value="test1" />
+      <input type="radio" v-model="radio_model" value="test2" />
+      <input type="radio" v-model="radio_model" value="test3" />
+      <p>radio model : {{radio_model}}</p>
+
+      <!--select 프로퍼티 저장-->
+      <select v-model="select_model">
+        <option>test1</option>
+        <option>test2</option>
+      </select>
+      <p>select model : {{select_model}}</p>
+    </div>
 
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-      Vue.createApp({
-        data() {
-          return {
-            myObject: {
-              title: "How to do lists in Vue",
-              author: "Jane Doe",
-              publishedAt: "2020-03-22",
-            },
-          };
+      new Vue({
+        el: "#app",
+        data: {
+          url: "https://naver.com",
+          type1: "radio",
+          type2: "text",
+          class1: "test-class1",
+          class2: "test-class2",
+          isON: true,
         },
-      }).mount("#v-for-object");
+      });
+
+      new Vue({
+        el: "#app2",
+        data: {
+          input_model: "",
+          input_model2: "",
+          textarea_model: "",
+          checkbox_model: false,
+          checkbox_model2: [],
+          radio_model: "",
+          select_model: "",
+        },
+      });
     </script>
   </body>
 </html>
