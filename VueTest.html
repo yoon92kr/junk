@@ -1,97 +1,73 @@
 <template>
-    <portal to="modals">
-      <div v-if="showModal" class="fixed inset-0 flex items-center justify-center">
-        <transition
-          @before-leave="backdropLeaving = true"
-          @after-leave="backdropLeaving = false"
-          enter-active-class="transition-all transition-fast ease-out-quad"
-          leave-active-class="transition-all transition-medium ease-in-quad"
-          enter-class="opacity-0"
-          enter-to-class="opacity-100"
-          leave-class="opacity-100"
-          leave-to-class="opacity-0"
-          appear
-        >
-          <div v-if="showBackdrop">
-            <div class="absolute inset-0 bg-black opacity-25" @click="close"></div>
-          </div>
-        </transition>
-  
-        <transition
-          @before-leave="cardLeaving = true"
-          @after-leave="cardLeaving = false"
-          enter-active-class="transition-all transition-fast ease-out-quad"
-          leave-active-class="transition-all transition-medium ease-in-quad"
-          enter-class="opacity-0 scale-70"
-          enter-to-class="opacity-100 scale-100"
-          leave-class="opacity-100 scale-100"
-          leave-to-class="opacity-0 scale-70"
-          appear
-        >
-          <div v-if="showContent" class="relative">
-            <slot></slot>
-          </div>
-        </transition>
+  <transition name="modal" appear>
+    <div class="modal modal-overlay" @click.self="$emit('close')">
+      <div class="modal-window">
+        <div class="modal-content">
+          <slot/>
+        </div>
+        <footer class="modal-footer">
+          <slot name="footer">
+            <button @click="$emit('close')">Close</button>
+          </slot>
+        </footer>
       </div>
-    </portal>
-  </template>
-  
-  <script>
-  export default {
-    props: ['open'],
-    data() {
-      return {
-        showModal: false,
-        showBackdrop: false,
-        showContent: false,
-        backdropLeaving: false,
-        cardLeaving: false,
-      }
-    },
-    created() {
-      const onEscape = (e) => {
-        if (this.open && e.keyCode === 27) {
-          this.close()
-        }
-      }
-      document.addEventListener('keydown', onEscape)
-      this.$once('hook:destroyed', () => {
-        document.removeEventListener('keydown', onEscape)
-      })
-    },
-    watch: {
-      open: {
-        handler: function (newValue) {
-          if (newValue) {
-            this.show()
-          } else {
-            this.close()
-          }
-        },
-        immediate: true
-      },
-      leaving(newValue) {
-        if (newValue === false) {
-          this.showModal = false
-          this.$emit('close')
-        }
-      }
-    },
-    computed: {
-      leaving() {
-        return this.backdropLeaving || this.cardLeaving
-      }
-    },
-    methods: {
-      show() {
-        this.showModal = true
-        this.showBackdrop = true
-        this.showContent = true
-      },
-      close() {
-        this.showBackdrop = false
-        this.showContent = false
-      }
-    }
+    </div>
+  </transition>
+</template>
+
+<style lang="stylus" scoped>
+.modal {
+  &.modal-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
   }
-  </script>
+
+  &-window {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  &-content {
+    padding: 10px 20px;
+  }
+
+  &-footer {
+    background: #ccc;
+    padding: 10px;
+    text-align: right;
+  }
+}
+
+// 오버레이 트랜지션
+.modal-enter-active, .modal-leave-active {
+  transition: opacity 0.4s;
+
+  // 오버레이에 포함되어 있는 모달 윈도의 트랜지션
+  .modal-window {
+    transition: opacity 0.4s, transform 0.4s;
+  }
+}
+
+// 딜레이가 적용된 모달 윈도가 제거된 후에 오버레이가 사라짐
+.modal-leave-active {
+  transition: opacity 0.6s ease 0.4s;
+}
+
+.modal-enter, .modal-leave-to {
+  opacity: 0;
+
+  .modal-window {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+</style>
