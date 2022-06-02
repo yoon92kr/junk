@@ -1,5 +1,6 @@
 <template>
-  <h1>HeaderNV</h1>
+  <router-link to="/main">main</router-link>
+  <router-link to="/login">login</router-link>
 </template>
 <script>
 export default {
