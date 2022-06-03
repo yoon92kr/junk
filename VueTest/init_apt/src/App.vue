@@ -1,7 +1,5 @@
 <template>
-  <div id="app">
-    <router-link to="/main">main</router-link>
-    <router-link to="/login">login</router-link>
+  <div id="App.vue">
     <router-view />
   </div>
 </template>

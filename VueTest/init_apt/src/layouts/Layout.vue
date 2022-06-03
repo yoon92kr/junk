@@ -1,7 +1,7 @@
 <template>
-  <HeaderNV />
-  <div>
-    <CContainer fluid>
+  <div id="Layout.vue">
+    <HeaderNV />
+    <CContainer>
       <router-view />
     </CContainer>
   </div>

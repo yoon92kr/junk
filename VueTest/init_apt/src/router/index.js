@@ -1,8 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
-
+import Layout from "@/layouts/Layout.vue";
 const routes = [
-  { path: "/main", component: () => import("@/views/HelloWorld.vue") },
-  { path: "/login", component: () => import("@/views/Login.vue") },
+  {
+    path: "/",
+    component: Layout,
+
+    children: [
+      { path: "/main", component: () => import("@/views/HelloWorld.vue") },
+      { path: "/login", component: () => import("@/views/Login.vue") },
+    ],
+  },
 ];
 
 const router = createRouter({
@@ -10,14 +17,11 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects. must call `next`.
+  next();
+});
+
 export default router;
 
-// var router = new VueRouter({
-//   routes: [
-//     { path: "/main", component: () => import("@/views/HelloWorld.vue") },
-//     { path: "/login", component: () => import("@/views/Login.vue") },
-//   ],
-// });
-// router.router.beforeEach((to, from, next) => {
-//   // to and from are both route objects. must call `next`.
-// });
+// router.beforeEach
