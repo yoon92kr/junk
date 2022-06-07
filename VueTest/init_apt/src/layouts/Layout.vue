@@ -1,6 +1,7 @@
 <template>
   <div id="Layout.vue">
     <HeaderNV />
+    <br />
     <CContainer>
       <router-view />
     </CContainer>
