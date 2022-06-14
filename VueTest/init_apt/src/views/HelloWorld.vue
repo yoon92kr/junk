@@ -55,10 +55,6 @@ export default {
     this.scene.add(this.cube);
     this.scene.add(this.axes);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.light.position.set(0, 0, 10);
-    this.camera.position.z = 5;
-    this.scene.background = new THREE.Color("hsl(0, 100%, 100%)");
-    this.controls = new TrackballControls(this.camera);
     this.controls.rotateSpeed = 1.0;
     this.controls.zoomSpeed = 5;
     this.controls.panSpeed = 0.8;
