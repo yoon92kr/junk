@@ -6,6 +6,7 @@
 export default {
   name: "HelloWorld",
   mounted() {
+    this.fetchTest();
     this.test();
   },
   methods: {
@@ -73,7 +74,7 @@ export default {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: "asd123",
+          id: "FetchTest",
           description: "hello world",
         }),
       }).then((response) => console.log(response));
