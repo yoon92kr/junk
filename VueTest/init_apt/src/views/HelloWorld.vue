@@ -67,18 +67,6 @@ export default {
         })
         .then((res) => log(res));
     },
-    fetchTest() {
-      fetch("https://localhost:3000/user/post", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: "FetchTest",
-          description: "hello world",
-        }),
-      }).then((response) => console.log(response));
-    },
   },
 };
 </script>
