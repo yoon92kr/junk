@@ -6,7 +6,7 @@ const routes = [
     component: Layout,
 
     children: [
-      { path: "/main", component: () => import("@/views/HelloWorld.vue") },
+      { path: "/main", component: () => import("@/views/Main.vue") },
       { path: "/stopWatch", component: () => import("@/views/StopWatch.vue") },
     ],
   },
