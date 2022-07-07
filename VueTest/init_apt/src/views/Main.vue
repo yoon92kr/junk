@@ -1,6 +1,18 @@
 <template>
-  <h1>Main Page</h1>
+  <div>
+    <button id="btn">click me</button>
+  </div>
 </template>
+
 <script>
-export default {};
+import $ from 'jquery';
+
+export default {
+  mounted() {
+    $('#btn').click(function() {
+      alert('hi');
+    });
+  }
+}
 </script>
+ 
