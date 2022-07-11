@@ -9,9 +9,11 @@ import $ from 'jquery';
 
 export default {
   mounted() {
+  
     $('#btn').click(function() {
       alert('hi');
     });
+    
   }
 }
 </script>
