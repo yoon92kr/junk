@@ -5,10 +5,14 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "HeaderNV",
 };
+
 </script>
+
+
 <style>
 .header_nv {
   margin: 0px 30px 0px 30px;
