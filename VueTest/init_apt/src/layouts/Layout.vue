@@ -1,4 +1,5 @@
 <template>
+
   <div id="Layout.vue">
     <HeaderNV />
     <br />
@@ -6,9 +7,11 @@
       <router-view />
     </CContainer>
   </div>
+  
 </template>
 
 <script>
+
 import HeaderNV from "@/components/HeaderNV.vue";
 import { CContainer } from "@coreui/vue";
 
@@ -19,4 +22,5 @@ export default {
     CContainer,
   },
 };
+
 </script>
